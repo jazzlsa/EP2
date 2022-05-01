@@ -12,3 +12,8 @@ def haversine(raio, fi1, l1, fi2, l2):
     angulo=math.sqrt(a+c*b)
     distancia=2*raio*math.asin(angulo)
     return distancia 
+
+import random
+def sorteia_pais(dic):
+    sorteio=random.choice(list(dic.keys()))
+    return sorteio 
