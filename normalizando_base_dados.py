@@ -8,5 +8,7 @@ def normaliza(dic):
             conteudo = dic[continente][pais]
             
             saida[pais] = conteudo
+
+            saida[pais]['continente'] = continente
             
     return saida
