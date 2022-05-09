@@ -28,7 +28,6 @@ def sorteia_letra_capital(palavra, lista_restrita):
     return saida
 
     
-
 def cor_bandeira(bandeira):
 
     cores_possiveis = []
