@@ -1,6 +1,6 @@
 import random
 
-def sorteia_letra(palavra, lista_restrita):
+def sorteia_letra_capital(palavra, lista_restrita):
 
     especiais = ['.', ',', '-', ';', ' ', '@', '!', '$', '%', '*', '(', ')', '{', '}', '[', ']', ':']
     saida = ''
@@ -26,3 +26,23 @@ def sorteia_letra(palavra, lista_restrita):
         continua = False
 
     return saida
+
+    
+
+def cor_bandeira(bandeira):
+
+    cores_possiveis = []
+    saida = ''
+
+    for cor, quant in bandeira.items():
+        if quant > 0:
+            cores_possiveis.append(cor)
+
+    saida = random.choice(cores_possiveis)
+    
+    if saida == 'outras':
+        saida = random.choice(cores_possiveis)
+
+    return saida
+
+
