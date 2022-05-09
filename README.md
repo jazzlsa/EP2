@@ -1,6 +1,7 @@
 # EP2
 
 Veronica
+Jessica
 
 Projeto 2 da disciplina de DesSoft.
 
