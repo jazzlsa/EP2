@@ -1,5 +1,7 @@
 # EP2
 
+Jessica
+
 Projeto 2 da disciplina de DesSoft.
 
 Regras do jogo:
