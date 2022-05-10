@@ -27,7 +27,7 @@ def esta_na_lista(pais, listas):
             tem = True
 
     return tem
-
+ 
 def adiciona_em_ordem(nome, distancia, lista):
     lista_1=[nome, distancia]
     lista_ordenada=[]
