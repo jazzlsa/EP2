@@ -1,3 +1,5 @@
+from funcoes_para_dicas import *
+
 '''
 Mercado de Dicas
 ----------------------------------------
@@ -32,25 +34,23 @@ entrada = {
       "outras": 5
     },
     "continente": "asia"}}
+lista_restrita = []
 
-cor_bandeira = entrada["afeganistao"]["bandeira"]
-letra_capital = entrada["afeganistao"]["Cabul"]
+cor = cor_bandeira(entrada["afeganistao"]["bandeira"])
+letra_capital = sorteia_letra_capital(entrada["afeganistao"]["capital"], lista_restrita)
 area = entrada["afeganistao"]["area"]
 pop = entrada["afeganistao"]["populacao"]
 continente = entrada["afeganistao"]["continente"]
 na = ''
 
-
-from os import popen
-
+cores_sorteadas = []
 
 def dicas(num):
 
-    dicas = {
-        '1' : cor_bandeira,
-        '2' : letra_capital,
-        '3' : area,
-        '4' : pop,
-        '5' : continente,
-        '0' : na,
-    }
+  # Pegando cor da bandeira 
+  cor = cor_bandeira(entrada["afeganistao"]["bandeira"])
+
+  if cor in cores_sorteadas:
+    cor = cor_bandeira(entrada["afeganistao"]["bandeira"])
+
+  return cor
