@@ -28,15 +28,13 @@ def esta_na_lista(pais, listas):
     return tem
  
 def adiciona_em_ordem(nome, distancia, lista):
-
     lista_1=[nome, distancia]
     lista_ordenada=[]
     contador=0
-
     if lista==[]:
         lista_ordenada.append(lista_1)
-    
-    else:    
+    else:
+        
         for i in range(len(lista)):
             if distancia<=lista[i][1]:
                 lista_ordenada.append(lista_1)
@@ -46,15 +44,9 @@ def adiciona_em_ordem(nome, distancia, lista):
     
             else:
                 lista_ordenada.append([lista[i][0], lista[i][1]])
-
         if contador+1<=len(lista):
             for k in range(contador+1,len(lista)):
                 lista_ordenada.append([lista[k][0], lista[k][1]])
-
-        if len(lista_ordenada)+1<=len(lista):
-            for k in range(contador+1,len(lista)):
-                lista_ordenada.append([lista[k][0], lista[k][1]])
-                
         if distancia>=lista[len(lista)-1][1]:
             lista_ordenada.append(lista_1)
     
