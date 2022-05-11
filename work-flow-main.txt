@@ -25,7 +25,7 @@ enquanto continuar = s # laço para garantir que ele continue jogando até dizer
 		else
 			ganhou = true #seta que ganhou
 		elif esta_na_lista(entrada, lista)==False:
-			display_pais_desconhecido
+			display_pais_desconhecido			
 		if(entrada = dica) #verifica se ele quer comprar dicas
 			enquanto entrada not in dicas ou entrada != cancelar
 				display_menu_dicas(dicas_compradas) #mostra as opções do mercado de dicas que ainda não foram compradas
