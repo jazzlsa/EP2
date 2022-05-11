@@ -36,6 +36,9 @@ enquanto continuar = s # laço para garantir que ele continue jogando até dizer
             continuar=input('Ops! Não entendi. Digite s/n: ')'''
 			if entrada = s #confirmou que quer desistir
 				desistiu = true #seta que desistiu
+		if entrada = 'inventario' #verifica posição no jogo
+			display_distancias()
+			display_dicas_compradas()
         
 	
 	se ganhou=true #verifica se ganhou
