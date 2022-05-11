@@ -3,32 +3,60 @@ import math
 import random
 import dados 
 
-def haversine(raio, fi1, l1, fi2, l2):
-    latitude1_rad=fi1*math.pi/180
-    latitude2_rad=fi2*math.pi/180
-    longitude1_rad=l1*math.pi/180
-    longitude2_rad=l2*math.pi/180
-    dif1=(latitude2_rad-latitude1_rad)/2
-    dif2=(longitude2_rad-longitude1_rad)/2
-    a= (math.sin(dif1))**2
-    b= (math.sin(dif2))**2
-    c=math.cos(latitude1_rad)*math.cos(latitude2_rad)
-    angulo=math.sqrt(a+c*b)
-    distancia=2*raio*math.asin(angulo)
+# Normalizando Base de Países - transforma banco de dados em dicionario cujas chave são paises
+def normaliza(DADOS):
+    saida = {}
+    for continente in DADOS.keys():
+        for pais in DADOS[continente]:
+            
+            conteudo = DADOS[continente][pais]
+            
+            saida[pais] = conteudo
+            saida[pais]['continente'] = continente
+            
+    return saida
+
+
+
+# Distância de Haversine - calcula distancia entre país selecinado e o sorteado 
+def haversine(fi1, l1, fi2, l2):
+    latitude1_rad = fi1*math.pi/180
+    latitude2_rad = fi2*math.pi/180
+    longitude1_rad = l1*math.pi/180
+    longitude2_rad = l2*math.pi/180
+
+    dif1 = (latitude2_rad-latitude1_rad)/2
+    dif2 = (longitude2_rad-longitude1_rad)/2
+
+    a = (math.sin(dif1))**2
+    b = (math.sin(dif2))**2
+
+    c = math.cos(latitude1_rad)*math.cos(latitude2_rad)
+    angulo = math.sqrt(a+c*b)
+    distancia = 2 * dados.EARTH_RADIUS * math.asin(angulo)
+
     return distancia 
 
+
+# Sorteando Países - Escolhe país que deve ser adivinhado 
+#dar .lower() no pais esolhido pelo jogador 
 def sorteia_pais(dic):
-    sorteio=random.choice(list(dic.keys()))
+    sorteio = random.choice(list(dic.keys()))
     return sorteio 
 
-def esta_na_lista(pais, listas):
+dados_normalizados = normaliza(dados.DADOS)
+print(sorteia_pais(dados_normalizados))
 
+# Está na Lista? - verifica se o pais escolhido pelo user está no dicionario 
+# tem que criar lista com os nomes dos paises
+def esta_na_lista(pais, listas):
     for lista in listas:
         if pais in lista:
             return True
 
     return False
- 
+
+# Adicionando em uma Lista Ordenada - retorna uma lista crescente com as distancias dos paises ja selecionados pelo jogador 
 def adiciona_em_ordem(nome, distancia, lista):
     lista_1=[nome, distancia]
     lista_ordenada=[]
@@ -59,13 +87,14 @@ def adiciona_em_ordem(nome, distancia, lista):
     
     return lista_ordenada
 
+# Sorteia Letra com Restrições - sorteia uma letra da capital
+#  Colocar letras ja sorteadas na lista de restrições
 def sorteia_letra_capital(palavra, lista_restrita):
 
     especiais = ['.', ',', '-', ';', ' ', '@', '!', '$', '%', '*', '(', ')', '{', '}', '[', ']', ':']
     saida = ''
     palavra = palavra.lower()
     palavra_lista = []
-
     continua = False
 
     for letra in palavra:
@@ -75,14 +104,13 @@ def sorteia_letra_capital(palavra, lista_restrita):
             continua = True
 
     while continua:
-
         saida = random.choice(palavra_lista)
-        
-       
         continua = False
 
     return saida
-    
+
+# Sorteia uma cor da bandeira
+# Colocar tbm lista de restrição com as cores ja sorteadas
 def cor_bandeira(bandeira):
 
     cores_possiveis = []
@@ -99,17 +127,4 @@ def cor_bandeira(bandeira):
 
     return saida
 
-def normaliza(dic):
 
-    saida = {}
-
-    for continente in dic.keys():
-        for pais in dic[continente]:
-            
-            conteudo = dic[continente][pais]
-            
-            saida[pais] = conteudo
-
-            saida[pais]['continente'] = continente
-            
-    return saida
