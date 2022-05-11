@@ -1,0 +1,54 @@
+**MAIN**
+
+continuar = s #inicia continuar
+
+dicas_compradas = [] #inicia dicas compradas
+
+ganhou = false #inicia ganhou
+
+desistiu = false #inicia desistiu
+
+enquanto continuar = s # laço para garantir que ele continue jogando até dizer que não
+
+	quantidade_tentativas = 20 #inicia quantidade de tentativas
+		#cor de acordo com numero de quantidade_tentativas
+
+	display_boas_vindas() #mostra as boas vindas do jogo
+	pais = sorteia_pais() #define qual o país para se ganhar
+	display_menu() #mostra o menu de como continuar jogando, desistir ou dicas
+	enquanto quantidade_tentativas > 0 ou ganhou = false ou desistiu = false #continua o jogo enquanto não tiver desistido, não tiver ganhado ou ainda tiver tentativas
+		entrada = get_entrada('Qual país?') #pega o que ele for digitar
+		if(entrada = dica) #verifica se ele quer comprar dicas
+			enquanto entrada not in dicas ou entrada != cancelar
+				display_menu_dicas(dicas_compradas) #mostra as opções do mercado de dicas que ainda não foram compradas
+				entrada = get_entrada() #pega o que ele for digitar
+				dicas_compradas = dicas(entrada, quantidade_tentativas, dicas_compradas) #diminui a quantidade de tentativas e atualiza as dicas compradas
+				display_dicas_compradas(dicas_compradas) #mostra todas as dicas compradas
+		if(entrada != pais)
+			distancia = verifica_resposta(quantidade_tentativas, entrada, paises) #verifica se o que foi digitado é um pais, se for diminui a tentativa e atualiza distancia
+			display_distancias(distancia) #mostra as distancias das tentativas
+		else
+			ganhou = true #seta que ganhou
+        
+		if(entrada = 'desistir') #verifica se quer desistir
+			entrada = confirma_desistencia() #confirma se ele quer realmente desistir
+            while entrada!='s' and entrada!='n':
+            continuar=input('Ops! Não entendi. Digite s/n: ')'''
+			if entrada = s #confirmou que quer desistir
+				desistiu = true #seta que desistiu
+        
+	
+	se ganhou=true #verifica se ganhou
+		display_ganhou(quantidade_tentativas) #mostra mensagem que ganhou
+	else #caso tenha perdido ou desistido
+		display_perdeu(pais) # mostra mensagem com o pais correto
+	se desistir=true #caso tenha desistido
+		display_desistiu() #mostra mensagem de desistencia
+	
+	entrada = '' #seta entrada como vazio
+	enquanto entrada != s e entrada != n #laço para manter a pessoa entro dele até que ele fala se quer continuar ou nao
+		entrada = display_jogar_novamente() #pega o que ele for digitar
+	continuar = entrada #se for s ou n ele coloca na variavel
+
+
+display_encerramento() #caso nao queira mais jogar, mostra a mensagem de encerramento do sistema
