@@ -20,12 +20,12 @@ def sorteia_pais(dic):
     return sorteio 
 
 def esta_na_lista(pais, listas):
-    tem = False
+
     for lista in listas:
         if pais in lista:
-            tem = True
+            return True
 
-    return tem
+    return False
  
 def adiciona_em_ordem(nome, distancia, lista):
     lista_1=[nome, distancia]
