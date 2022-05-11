@@ -1,3 +1,5 @@
+import funcoes
+
 '''continuar='s' #inicia continuar
 
 dicas_compradas = [] #inicia dicas compradas
