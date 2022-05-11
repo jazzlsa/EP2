@@ -44,8 +44,7 @@ def sorteia_pais(dic):
     sorteio = random.choice(list(dic.keys()))
     return sorteio 
 
-dados_normalizados = normaliza(dados.DADOS)
-print(sorteia_pais(dados_normalizados))
+
 
 # Está na Lista? - verifica se o pais escolhido pelo user está no dicionario 
 # tem que criar lista com os nomes dos paises
@@ -111,7 +110,7 @@ def sorteia_letra_capital(palavra, lista_restrita):
 
 # Sorteia uma cor da bandeira
 # Colocar tbm lista de restrição com as cores ja sorteadas
-def cor_bandeira(bandeira):
+def cor_bandeira(bandeira, lista_restrita):
 
     cores_possiveis = []
     saida = ''
@@ -122,9 +121,17 @@ def cor_bandeira(bandeira):
 
     saida = random.choice(cores_possiveis)
     
-    if saida == 'outras':
-        saida = random.choice(cores_possiveis)
+    if saida == 'outras' or saida in lista_restrita:
+        while saida == 'outras'or saida in lista_restrita:
+            saida = random.choice(cores_possiveis)
 
     return saida
 
+dados_normalizados = normaliza(dados.DADOS)
+pais = sorteia_pais(dados_normalizados)
+bandeira = dados_normalizados[pais]['bandeira']
+
+lista_restrita = ['azul claro', 'verde', 'amarela', 'vermelha']
+
+print(cor_bandeira(bandeira, lista_restrita))
 
