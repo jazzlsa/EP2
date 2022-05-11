@@ -1,7 +1,5 @@
 import random
 
-import random
-
 def sorteia_letra_capital(palavra, lista_restrita):
 
     especiais = ['.', ',', '-', ';', ' ', '@', '!', '$', '%', '*', '(', ')', '{', '}', '[', ']', ':']
