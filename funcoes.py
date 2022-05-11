@@ -1,5 +1,6 @@
 import math
 import random
+import dados 
 
 def haversine(raio, fi1, l1, fi2, l2):
     latitude1_rad=fi1*math.pi/180

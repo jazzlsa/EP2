@@ -1,18 +1,4 @@
-from funcoes_para_dicas import *
-
-'''
-Mercado de Dicas
-----------------------------------------
-1. Cor da bandeira  - custa 4 tentativas
-2. Letra da capital - custa 3 tentativas
-3. Área             - custa 6 tentativas
-4. População        - custa 5 tentativas
-5. Continente       - custa 7 tentativas
-0. Sem dica
-----------------------------------------
-Escolha sua opção [0|1|2|3|4|5]: 
-
-'''
+from funcoes import *
 entrada = {
   "afeganistao": {
     "area": 652230,
