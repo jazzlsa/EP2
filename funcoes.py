@@ -1,3 +1,4 @@
+#funções do jogo
 import math
 import random
 import dados 

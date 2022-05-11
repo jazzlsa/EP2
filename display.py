@@ -1,3 +1,4 @@
+#funções de tela
 '''def display_inicio():
 print(' ✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀ ')
 print('☺                                ☺')
