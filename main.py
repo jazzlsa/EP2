@@ -1,4 +1,14 @@
-'''continuar='s'
+'''continuar='s' #inicia continuar
+
+dicas_compradas = [] #inicia dicas compradas
+
+ganhou = false #inicia ganhou
+
+desistiu = false #inicia desistiu
+
+enquanto continuar = s # laço para garantir que ele continue jogando até dizer que não
+
+	quantidade_tentativas = 20 #inicia quantidade de tentativas
 while continuar=='s':
   tentativas=20
   sorteia_pais(dic)
