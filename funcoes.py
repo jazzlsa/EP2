@@ -3,8 +3,6 @@ import math
 import random
 import dados 
 
-
-
 def haversine(raio, fi1, l1, fi2, l2):
     latitude1_rad=fi1*math.pi/180
     latitude2_rad=fi2*math.pi/180
@@ -38,7 +36,11 @@ def adiciona_em_ordem(nome, distancia, lista):
     if lista==[]:
         lista_ordenada.append(lista_1)
     else:
-        
+        for h in range(len(lista)):
+            if nome==lista[h][0]:
+                return lista
+                break
+    
         for i in range(len(lista)):
             if distancia<=lista[i][1]:
                 lista_ordenada.append(lista_1)
@@ -48,11 +50,12 @@ def adiciona_em_ordem(nome, distancia, lista):
     
             else:
                 lista_ordenada.append([lista[i][0], lista[i][1]])
-        if contador+1<=len(lista):
-            for k in range(contador+1,len(lista)):
-                lista_ordenada.append([lista[k][0], lista[k][1]])
         if distancia>=lista[len(lista)-1][1]:
             lista_ordenada.append(lista_1)
+        elif contador+1<len(lista):
+            for k in range(contador+1,len(lista)):
+                lista_ordenada.append([lista[k][0], lista[k][1]])
+        
     
     return lista_ordenada
 
