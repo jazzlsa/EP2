@@ -114,8 +114,11 @@ def cor_bandeira(bandeira, lista_restrita):
 
     cores_possiveis = []
     saida = ''
+    print(bandeira)
 
     for cor, quant in bandeira.items():
+        print(cor)
+        print(quant)
         if quant > 0:
             cores_possiveis.append(cor)
 
@@ -126,12 +129,6 @@ def cor_bandeira(bandeira, lista_restrita):
             saida = random.choice(cores_possiveis)
 
     return saida
+# se ele ja sorteou todas as cores possiveis, retorna uma lista vazia
 
-dados_normalizados = normaliza(dados.DADOS)
-pais = sorteia_pais(dados_normalizados)
-bandeira = dados_normalizados[pais]['bandeira']
-
-lista_restrita = ['azul claro', 'verde', 'amarela', 'vermelha']
-
-print(cor_bandeira(bandeira, lista_restrita))
 
