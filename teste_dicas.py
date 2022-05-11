@@ -28,7 +28,6 @@ capital = entrada["afeganistao"]['capital']
 
 def dicas(num_escolhido):
 
-    print(lista_restrita_capital)
 
     dicas_dic = {
         '1' : ['', '4'],
