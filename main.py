@@ -19,8 +19,8 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
 
   sorteia_pais(dados_normalizados) #define qual o país para se ganhar
 
-  latitude_pais_sorteado=
-  longitude_pais_sorteado=
+  latitude_pais_sorteado =
+  longitude_pais_sorteado =
 
   display_boas_vindas() #mostra as boas vindas do jogo
 
