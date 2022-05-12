@@ -56,6 +56,7 @@ def esta_na_lista(pais, listas):
 
     return False
 
+
 # Adicionando em uma Lista Ordenada - retorna uma lista crescente com as distancias dos paises ja selecionados pelo jogador 
 def adiciona_em_ordem(nome, distancia, lista):
     lista_1=[nome, distancia]
@@ -86,6 +87,8 @@ def adiciona_em_ordem(nome, distancia, lista):
         
     
     return lista_ordenada
+
+
 
 # Sorteia Letra com Restrições - sorteia uma letra da capital
 #  Colocar letras ja sorteadas na lista de restrições
@@ -129,6 +132,8 @@ def cor_bandeira(bandeira, lista_restrita):
     return saida
 # se ele ja sorteou todas as cores possiveis, retorna uma lista vazia
 
+
+
 #inicializa os dados do pais sorteado
 def cria_dicionario_pais_sorteado(pais,dicionario):
     dicionario_pais_sorteado = {}
@@ -141,6 +146,7 @@ def cria_dicionario_pais_sorteado(pais,dicionario):
     dicionario_pais_sorteado["bandeira"] = dicionario[pais]['bandeira']
     dicionario_pais_sorteado["continente"] = dicionario[pais]['continente']
     return dicionario_pais_sorteado
+
 
 #debita tentativas
 def debita_tentativa(total, debito):
