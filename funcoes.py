@@ -49,6 +49,7 @@ def sorteia_pais(dic):
 # Está na Lista? - verifica se o pais escolhido pelo user está no dicionario 
 # tem que criar lista com os nomes dos paises
 def esta_na_lista(pais, listas):
+    pais=pais.lower()
     for lista in listas:
         if pais in lista:
             return True
