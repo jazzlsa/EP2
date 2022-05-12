@@ -31,8 +31,6 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
   while quantidade_tentativas != 0 or ganhou == False or desistiu == False:
     #pega o que ele for digitar
     entrada = input('Qual é o país sorteado? ')
-    #dar .lower() no pais esolhido pelo jogador 
-
     #pula linha
     print()
 
@@ -48,22 +46,32 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
       #mostra o restante das tentativas
       display.display_tentativas_restantes(quantidade_tentativas)
     else:
+      #mostra menu
       if(entrada=='menu'):
         display.display_menu()
+      #mostra dica e avalia as dicas existentes
       if(entrada=='dica'):
         display.display_mercado_dicas()
+      #mostra confirmação de desistência
       if(entrada=='desisto'):
         display.display_confirma_desisto()
         entrada = input()
+        #laço para o usuário digitar apenas S ou N
         while(entrada!='s' and entrada!='n'):
           display.display_confirma_desisto()
+        #confirmação de desistencia
         if(entrada=='s'):
+          #mostra mensagem de desistencia
           display.display_sim_desisto()
           desistiu=True
+        #negação de desistencia
         if(entrada=='n'):
+          #mostra mensagem de negação de desistencia
           display.display_nao_desisto()
+      #mostra inventário
       if(entrada=='inventario'):
         print('Não sei o que é isso')
+      #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if(entrada not in ['menu','dica','desisto']):
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
 
