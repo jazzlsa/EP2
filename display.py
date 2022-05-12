@@ -55,3 +55,19 @@ def display_sim_desisto():
 def display_distancias(array_distancias):
     for linhas in array_distancias:
         print(linhas)
+
+def nao_ganhou():
+    print('Ihhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?')
+
+def ganhou1():
+    print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
+
+def jogar_novamente():
+    print('Tá afim de procastinar mais um pouco? Quer mais uma rodada?[s/n]')
+
+def digite_s_ou_n():
+    print('EEEEE cabeção! É apenas s ou n')
+
+def produtivo():
+    print('É isso aí, bora ser produtivo! Até mais e bom final de semana!!')
+

@@ -28,7 +28,7 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
   display.display_menu()
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
-  while quantidade_tentativas != 0 or ganhou == False or desistiu == False:
+  while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
     #pega o que ele for digitar
     entrada = input('Qual é o país sorteado? ')
     #pula linha
@@ -74,30 +74,24 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if(entrada not in ['menu','dica','desisto']):
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
-
-# 
-# 
-# 
-#    tentativa-=1
-#        latitude_entrada =
-#        longitude_entrada =brasi
-#			  distancia = funcoes.haversine()  #verifica se o que foi digitado é um pais, se for diminui a tentativa e atualiza distancia
-
-#			display_adiciona em ordem(pais, distancia) #mostra as distancias das tentativas
-			
-#      else
-#        ganhou = true #seta que ganhou
-#      elif esta_na_lista(entrada, lista)==False:
-#        display_pais_desconhecido			
-#      if(entrada = dica) #verifica se ele quer comprar dicas
-#        while entrada not in dicas ou entrada != cancelar:
-#          display_menu_dicas(dicas_compradas) #mostra as opções do mercado de dicas que ainda não foram compradas
-#          entrada = input() #pega o que ele for digitar
-#          dicas_compradas = dicas(entrada, quantidade_tentativas, dicas_compradas) #diminui a quantidade de tentativas e atualiza as dicas compradas
-#          display_dicas_compradas(dicas_compradas) #mostra todas as dicas compradas
-
-
-#  print('Perdeu! O país era {}')
-#  continuar=input('Jogar Novamente?s/n ')
-#  while continuar!='s' and continuar!='n':
-#    continuar=input('Ops! Não entendi. Digite s/n: ')
+      #verifica se o pais digitado é o correto
+      if(entrada==pais_sorteado['nome']):
+        ganhou = True
+  #mostra mensagem caso tenha perdido
+  if(ganhou==False):
+    display.nao_ganhou()
+  #mostra mensagem caso tenha ganhado
+  if(ganhou==True):
+    display.ganhou1()
+  #mostra mensagem se quer mais uma rodada
+  display.jogar_novamente()
+  entrada=''
+  #laço para aceitar apenas s ou n
+  while(entrada!='s' and entrada!='n'):
+    entrada=input()
+    #mostra mensagem dizendo que é apenas s ou n
+    if(entrada!='s' and entrada!='n'):
+      display.digite_s_ou_n()
+  continuar=entrada
+#mostra mensagem final
+display.produtivo()
