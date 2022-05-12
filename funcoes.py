@@ -114,11 +114,8 @@ def cor_bandeira(bandeira, lista_restrita):
 
     cores_possiveis = []
     saida = ''
-    print(bandeira)
 
     for cor, quant in bandeira.items():
-        print(cor)
-        print(quant)
         if quant > 0:
             cores_possiveis.append(cor)
 
