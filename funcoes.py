@@ -13,7 +13,7 @@ def normaliza(DADOS):
             
             saida[pais] = conteudo
             saida[pais]['continente'] = continente
-            
+
     return saida
 
 
@@ -51,7 +51,7 @@ def sorteia_pais(dic):
 def esta_na_lista(pais, listas):
     pais=pais.lower()
     for lista in listas:
-        if pais in lista:
+        if pais == lista:
             return True
 
     return False

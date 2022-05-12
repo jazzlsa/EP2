@@ -32,7 +32,7 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
     #pega o que ele for digitar
     entrada = input('Qual é o país sorteado? ')
     #dar .lower() no pais esolhido pelo jogador 
-    
+
     #pula linha
     print()
 
@@ -65,7 +65,7 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
       if(entrada=='inventario'):
         print('Não sei o que é isso')
       if(entrada not in ['menu','dica','desisto']):
-        print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos e letras maiúsculas')
+        print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
 
 # 
 # 
