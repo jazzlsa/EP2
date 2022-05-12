@@ -1,5 +1,6 @@
 #funções de tela
 def display_boas_vindas():
+    print('')
     print(' ✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀ ')
     print('☺                                ☺')
     print('☺   Bem-vindo ao Insper Países   ☺')
@@ -8,14 +9,16 @@ def display_boas_vindas():
     print('')
 
 def display_menu():
+    print('')
     print('Comandos:')
-    print('dica -       Entra no mercado de dicas')
-    print('desisto -    Desiste da rodada')
+    print('dica       - Entra no mercado de dicas')
+    print('desisto    - Desiste da rodada')
     print('inventario - Exibe sua posição')
-    print('menu -       Exibe este menu')
+    print('menu       - Exibe este menu')
     print('')
     
 def display_mercado_dicas():
+    print('')
     print('Mercado de Dicas')
     print('----------------------------------------')
     print('1. Cor da bandeira  - custa 4 tentativas')
@@ -25,5 +28,30 @@ def display_mercado_dicas():
     print('5. Continente       - custa 7 tentativas')
     print('0. Sem dica')
     print('----------------------------------------')
+    #necessário alterar depois
     print('Escolha sua opção [0|1|2|3|4|5]:')
+    print('')
 
+def display_tentativas_restantes(tentativas):
+    print('')
+    print('Você possui '+str(tentativas)+' restantes')
+    print('')
+
+def display_confirma_desisto():
+    print('')
+    print('Não acredito que você seja um arregão. Quer mesmo desistir?')
+    print('[s/n]')
+
+def display_nao_desisto():
+    print('')
+    print('Sabia que você não era um arregão!')
+    print('')
+
+def display_sim_desisto():
+    print('')
+    print('Sabia que você era um arregão!')
+    print('')
+
+def display_distancias(array_distancias):
+    for linhas in array_distancias:
+        print(linhas)

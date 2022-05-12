@@ -1,21 +1,17 @@
 from asyncio.windows_events import NULL
+from dis import dis
 from dados import DADOS
 import funcoes
 import display
 
 continuar ='s' #inicia continuar
-
 dicas_compradas = [] #inicia dicas compradas
-
 lista_paises = []
-
 ganhou = False #inicia ganhou
-
 desistiu = False #inicia desistiu
-
 pais_sorteado = NULL #inicia o pais sorteado
-
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
+distancias = []
 
 for pais in dados_normalizados.keys(): # Colocando os países na lista
   lista_paises.append(pais)
@@ -29,15 +25,47 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
   display.display_menu() #mostra as boas vindas do jogo
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
-  while quantidade_tentativas > 0 or ganhou == False or desistiu == False:
-
+  while quantidade_tentativas != 0 or ganhou == False or desistiu == False:
     #pega o que ele for digitar
-  	entrada = input('Qual é país sorteado? ')
-    
-#    if funcoes.esta_na_lista(entrada, dados_normalizados)==True and (entrada != pais_sorteado['nome']):
-#        tentativa-=1
+    entrada = input('Qual é o país sorteado? ')
+    print()
+
+    if funcoes.esta_na_lista(entrada, dados_normalizados)==True and (entrada != pais_sorteado['nome']):
+      #queima uma tentativa
+      quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1)
+      #verifica a distância do país informado com o país sorteado
+      distancia_tentativa = funcoes.haversine(pais_sorteado['latitude'], pais_sorteado['longitude'], dados_normalizados[entrada]['geo']['latitude'], dados_normalizados[entrada]['geo']['longitude'])
+      #adiciona a distância do país informado a lista de tentativas
+      distancias.append(entrada+': '+distancia_tentativa+'km')
+      display.display_distancias(distancias)
+      display.display_tentativas_restantes(quantidade_tentativas)
+    else:
+      if(entrada=='menu'):
+        display.display_menu()
+      if(entrada=='dica'):
+        display.display_mercado_dicas()
+        ############
+        #Precisa terminar
+      if(entrada=='desisto'):
+        display.display_confirma_desisto()
+        entrada = input()
+        while(entrada!='s' and entrada!='n'):
+          display.display_confirma_desisto()
+        if(entrada=='s'):
+          display.display_sim_desisto()
+          desistiu=True
+        if(entrada=='n'):
+          display.display_nao_desisto()
+      if(entrada=='inventario'):
+        print('Não sei o que é isso')
+      print('qualquer coisa')
+
+# 
+# 
+# 
+#    tentativa-=1
 #        latitude_entrada =
-#        longitude_entrada =
+#        longitude_entrada =brasi
 #			  distancia = funcoes.haversine()  #verifica se o que foi digitado é um pais, se for diminui a tentativa e atualiza distancia
 
 #			display_adiciona em ordem(pais, distancia) #mostra as distancias das tentativas

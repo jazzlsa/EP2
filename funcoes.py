@@ -34,8 +34,8 @@ def haversine(fi1, l1, fi2, l2):
     c = math.cos(latitude1_rad)*math.cos(latitude2_rad)
     angulo = math.sqrt(a+c*b)
     distancia = 2 * dados.EARTH_RADIUS * math.asin(angulo)
-
-    return distancia 
+    
+    return (f'{int(distancia):,}').replace(',','.')
 
 
 # Sorteando Países - Escolhe país que deve ser adivinhado 
@@ -128,7 +128,7 @@ def cor_bandeira(bandeira, lista_restrita):
     return saida
 # se ele ja sorteou todas as cores possiveis, retorna uma lista vazia
 
-
+#inicializa os dados do pais sorteado
 def cria_dicionario_pais_sorteado(pais,dicionario):
     dicionario_pais_sorteado = {}
     dicionario_pais_sorteado["nome"] = pais
@@ -140,3 +140,9 @@ def cria_dicionario_pais_sorteado(pais,dicionario):
     dicionario_pais_sorteado["bandeira"] = dicionario[pais]['bandeira']
     dicionario_pais_sorteado["continente"] = dicionario[pais]['continente']
     return dicionario_pais_sorteado
+
+#debita tentativas
+def debita_tentativa(total, debito):
+    if(total > debito):
+        return total-debito
+    return 0
