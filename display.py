@@ -60,7 +60,7 @@ def ganhou1():
     print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
 
 def jogar_novamente():
-    print('Tá afim de procastinar mais um pouco? Quer mais uma rodada?[s/n]')
+    print('Tá afim de procrastinar mais um pouco? Quer mais uma rodada?[s/n]')
 
 def digite_s_ou_n():
     print('EEEEE cabeção! É apenas s ou n')
