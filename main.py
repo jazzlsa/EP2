@@ -5,21 +5,26 @@ import funcoes
 import display
 
 continuar ='s' #inicia continuar
-dicas_compradas = [] #inicia dicas compradas
 lista_paises = []
-ganhou = False #inicia ganhou
-desistiu = False #inicia desistiu
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
-distancias = [] #inicializando as distancias das tentativas
 
 # Colocando os países na lista
 for pais in dados_normalizados.keys():
   lista_paises.append(pais)
 
-while continuar == 's': # laço para garantir que ele continue jogando até dizer que não
+#laço para garantir que ele continue jogando até dizer que não
+while continuar == 's': 
+  #inicia dicas compradas
+  dicas_compradas = []
+  #inicializando as distancias das tentativas
+  distancias = {}
+  #inicia ganhou
+  ganhou = False
+  #inicia desistiu
+  desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 20
+  quantidade_tentativas = 3
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
   #mostra as boas vindas do jogo
@@ -39,8 +44,12 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
       quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1)
       #verifica a distância do país informado com o país sorteado
       distancia_tentativa = funcoes.haversine(pais_sorteado['latitude'], pais_sorteado['longitude'], dados_normalizados[entrada]['geo']['latitude'], dados_normalizados[entrada]['geo']['longitude'])
+      
       #adiciona a distância do país informado a lista de tentativas
-      distancias.append(entrada+': '+distancia_tentativa+'km')
+      #distancias.append(entrada+': '+distancia_tentativa+'km')
+
+      funcoes.adiciona_tentativa(entrada,distancia_tentativa,distancias)
+      
       #mostra todas as distancias
       display.display_distancias(distancias)
       #mostra o restante das tentativas
@@ -72,14 +81,14 @@ while continuar == 's': # laço para garantir que ele continue jogando até dize
       if(entrada=='inventario'):
         print('Não sei o que é isso')
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
-      if(entrada not in ['menu','dica','desisto']):
+      if(entrada not in ['menu','dica','desisto','s','n']):
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
       #verifica se o pais digitado é o correto
       if(entrada==pais_sorteado['nome']):
         ganhou = True
   #mostra mensagem caso tenha perdido
   if(ganhou==False):
-    display.nao_ganhou()
+    print('Ihhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?')
   #mostra mensagem caso tenha ganhado
   if(ganhou==True):
     display.ganhou1()

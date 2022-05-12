@@ -56,9 +56,6 @@ def display_distancias(array_distancias):
     for linhas in array_distancias:
         print(linhas)
 
-def nao_ganhou():
-    print('Ihhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?')
-
 def ganhou1():
     print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
 

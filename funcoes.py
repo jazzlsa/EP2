@@ -147,3 +147,5 @@ def debita_tentativa(total, debito):
     if(total > debito):
         return total-debito
     return 0
+
+def adiciona_tentativa(entrada,distancia_tentativa,distancias)
