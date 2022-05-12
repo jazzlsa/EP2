@@ -129,3 +129,14 @@ def cor_bandeira(bandeira, lista_restrita):
 # se ele ja sorteou todas as cores possiveis, retorna uma lista vazia
 
 
+def cria_dicionario_pais_sorteado(pais,dicionario):
+    dicionario_pais_sorteado = {}
+    dicionario_pais_sorteado["nome"] = pais
+    dicionario_pais_sorteado["latitude"] = dicionario[pais]['geo']['latitude']
+    dicionario_pais_sorteado["longitude"] = dicionario[pais]['geo']['longitude']
+    dicionario_pais_sorteado["area"] = dicionario[pais]['area']
+    dicionario_pais_sorteado["populacao"] = dicionario[pais]['populacao']
+    dicionario_pais_sorteado["capital"] = dicionario[pais]['capital']
+    dicionario_pais_sorteado["bandeira"] = dicionario[pais]['bandeira']
+    dicionario_pais_sorteado["continente"] = dicionario[pais]['continente']
+    return dicionario_pais_sorteado
