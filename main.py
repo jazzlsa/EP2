@@ -32,13 +32,7 @@ for pais in dados_normalizados.keys(): # Colocando os países na lista
   bandeira_pais_sorteado = dados_normalizados[pais_sorteado]['bandeira']
   continente_pais_sorteado = dados_normalizados[pais_sorteado]['continente']
 
-<<<<<<< HEAD
   sorteia_pais(dados_normalizados) #define qual o país para se ganhar
-
-  latitude_pais_sorteado =
-  longitude_pais_sorteado =
-=======
->>>>>>> 469ea1fe715b67cff314f0f83aeb75d6dad463e8
 
   display_boas_vindas() #mostra as boas vindas do jogo
 
@@ -74,4 +68,3 @@ for pais in dados_normalizados.keys(): # Colocando os países na lista
   continuar=input('Jogar Novamente?s/n ')
   while continuar!='s' and continuar!='n':
     continuar=input('Ops! Não entendi. Digite s/n: ')
-'''
