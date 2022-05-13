@@ -98,7 +98,8 @@ while continuar == 's':
               entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
             else:
               digito_correto=True
-        print('AEEEE')
+              print(funcoes.dicas(entrada_dicas, pais_sorteado, funcoes.cria_dicionario_pais_sorteado(pais_sorteado,dados_normalizados)))
+             
 
 
 
