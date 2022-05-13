@@ -5,11 +5,11 @@ from zmq import NULL
 
 def display_boas_vindas():
     print('')
-    print(' ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ')
-    print('☺                                ☺')
-    print('☺   Bem-vindo ao Insper Países   ☺')
-    print('☺                                ☺')
-    print(' ✿ ❀ ✿ Design de Software✿ ❀ ✿ ❀ ')
+    print('\033[1;30;45m  ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀   \033[m')
+    print('\033[1;30;45m ☺                                ☺ \033[m')
+    print('\033[1;30;45m ☺   Bem-vindo ao Insper Países   ☺ \033[m')
+    print('\033[1;30;45m ☺                                ☺ \033[m')
+    print('\033[1;30;45m  ✿ ❀ ✿ Design de Software✿ ❀ ✿ ❀   \033[m')
     print('')
 
 def display_menu():
@@ -48,7 +48,13 @@ def display_mercado_dicas(dicas_permitidas):
 
 def display_tentativas_restantes(tentativas):
     print('')
-    print('Você possui '+str(tentativas)+' restantes')
+    if tentativas > 10:
+        print('Você possui \033[1;32m'+str(tentativas)+'\033[m restantes')
+    else: 
+        if tentativas <= 10 and tentativas > 5:
+            print('Você possui \033[1;33m'+str(tentativas)+'\033[m restantes')
+        else:
+            print('Você possui \033[1;31m'+str(tentativas)+'\033[m restantes')
     print('')
 
 def display_confirma_desisto():

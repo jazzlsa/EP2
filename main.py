@@ -25,7 +25,7 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 10
+  quantidade_tentativas = 12
   #inicia dicas permitidas
   dicas_permitidas = {}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)

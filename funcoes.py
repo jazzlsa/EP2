@@ -177,31 +177,6 @@ def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas):
         dicas_permitidas['5']=True
     return dicas_permitidas
 
-def dicionario_cores(cor):
-    cores={}
-    cores['preto']=30
-    cores['vermelho']=31
-    cores['verde']=32
-    cores['amarelo']=33
-    cores['azul']=34
-    cores['magenta']=35
-    cores['ciano']=36
-    cores['cinza_claro']=37
-    cores['branco']=97
-    return cores[cor]
-
-def dicionario_cores_fundo(cor_fundo):
-    cores_fundo={}
-    cores_fundo['preto']=40
-    cores_fundo['vermelho']=41
-    cores_fundo['verde']=42
-    cores_fundo['amarelo']=43
-    cores_fundo['azul']=44
-    cores_fundo['magenta']=45
-    cores_fundo['ciano']=46
-    cores_fundo['cinza_claro']=47
-    cores_fundo['branco']=107
-    return cores_fundo[cor_fundo]
 
 def dicas(entrada_dicas, pais_sorteado, dicionario_pais_sorteado):
     area_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['area']
