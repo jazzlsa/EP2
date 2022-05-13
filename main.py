@@ -25,10 +25,12 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 3
+  quantidade_tentativas = 10
+  #inicia dicas permitidas
+  dicas_permitidas = {}
+  dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
   #define qual o país para se ganhar
-  dicionario_pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
-  pais_sorteado = dicionario_pais_sorteado["nome"]
+  pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
   #mostra o menu
@@ -43,15 +45,13 @@ while continuar == 's':
 
     if funcoes.esta_na_lista(entrada, dados_normalizados)==True and (entrada != pais_sorteado['nome']):
       #queima uma tentativa
-      quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1)
+      quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1,distancias,entrada)
+      #atualiza as dicas permitidas
+      dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
       #verifica a distância do país informado com o país sorteado
       distancia_tentativa = funcoes.haversine(pais_sorteado['latitude'], pais_sorteado['longitude'], dados_normalizados[entrada]['geo']['latitude'], dados_normalizados[entrada]['geo']['longitude'])
-      
-      #adiciona a distância do país informado a lista de tentativas
-      #distancias.append(entrada+': '+distancia_tentativa+'km')
-
-      funcoes.adiciona_tentativa(entrada,distancia_tentativa,distancias)
-      
+      #Adiciona distâncias na lista de tentativas
+      distancias = funcoes.adiciona_tentativa(entrada,distancia_tentativa,distancias)
       #mostra todas as distancias
       display.display_distancias(distancias)
       #mostra o restante das tentativas
@@ -60,9 +60,7 @@ while continuar == 's':
       #mostra menu
       if(entrada=='menu'):
         display.display_menu()
-      #mostra dica e avalia as dicas existentes
-      if(entrada=='dica'):
-        display.display_mercado_dicas()
+        
       #mostra confirmação de desistência
       if(entrada=='desisto'):
         display.display_confirma_desisto()
@@ -79,11 +77,34 @@ while continuar == 's':
         if(entrada=='n'):
           #mostra mensagem de negação de desistencia
           display.display_nao_desisto()
+
       #mostra inventário
       if(entrada=='inventario'):
-        print('Não sei o que é isso')
+        display.display_distancias(distancias)
+
+
+
+
+
+      #mostra dica e avalia as dicas existentes
+      if(entrada=='dica'):
+        entrada_dicas = NULL
+        entrada_dicas = display.display_mercado_dicas(dicas_permitidas)
+        digito_correto = False
+        while(digito_correto==False):
+          if(isinstance(entrada_dicas, int)==False or entrada_dicas < 0 or entrada_dicas > 6):
+            if(dicas_permitidas[str(entrada_dicas)]==False):
+              display.erro_digito_opcao_dicas()
+              entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
+            else:
+              digito_correto=True
+        print('AEEEE')
+
+
+
+
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
-      if(entrada not in ['menu','dica','desisto','s','n']):
+      if(entrada not in ['menu','dica','desisto','s','n','inventario']):
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
       #verifica se o pais digitado é o correto
       if(entrada==pais_sorteado['nome']):

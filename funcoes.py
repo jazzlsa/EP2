@@ -53,7 +53,6 @@ def esta_na_lista(pais, listas):
     for lista in listas:
         if pais == lista:
             return True
-
     return False
 
 
@@ -149,10 +148,31 @@ def cria_dicionario_pais_sorteado(pais,dicionario):
 
 
 #debita tentativas
-def debita_tentativa(total, debito):
-    if(total > debito):
-        return total-debito
-    return 0
+def debita_tentativa(total, debito, tentativas, entrada):
+    if entrada not in tentativas.keys():
+        if(total > debito):
+            return total-debito
+        return 0
+    return total
 
 def adiciona_tentativa(entrada,distancia_tentativa,distancias):
-    
+    distancias[entrada] = entrada + ' : ' + distancia_tentativa + ' km'
+    return distancias
+
+def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas):
+    dicas_permitidas['1']=False
+    dicas_permitidas['2']=False
+    dicas_permitidas['3']=False
+    dicas_permitidas['4']=False
+    dicas_permitidas['5']=False
+    if(quantidade_tentativas>4):
+        dicas_permitidas['1']=True
+    if(quantidade_tentativas>3):
+        dicas_permitidas['2']=True
+    if(quantidade_tentativas>6):
+        dicas_permitidas['3']=True
+    if(quantidade_tentativas>5):
+        dicas_permitidas['4']=True
+    if(quantidade_tentativas>7):
+        dicas_permitidas['5']=True
+    return dicas_permitidas

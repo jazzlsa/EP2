@@ -1,4 +1,7 @@
 #funções de tela
+from zmq import NULL
+
+
 def display_boas_vindas():
     print('')
     print(' ✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀ ')
@@ -17,20 +20,30 @@ def display_menu():
     print('menu       - Exibe este menu')
     print('')
     
-def display_mercado_dicas():
+def display_mercado_dicas(dicas_permitidas):
+    string_opcoes=''
+    outras_opcoes = False
     print('')
     print('Mercado de Dicas')
     print('----------------------------------------')
-    print('1. Cor da bandeira  - custa 4 tentativas')
-    print('2. Letra da capital - custa 3 tentativas')
-    print('3. Área             - custa 6 tentativas')
-    print('4. População        - custa 5 tentativas')
-    print('5. Continente       - custa 7 tentativas')
-    print('0. Sem dica')
+    if(dicas_permitidas['1']):
+        print('1. Cor da bandeira  - custa 4 tentativas')
+        string_opcoes=string_opcoes+'|1'
+    if(dicas_permitidas['2']):
+        print('2. Letra da capital - custa 3 tentativas')
+        string_opcoes=string_opcoes+'|2'
+    if(dicas_permitidas['3']):
+        print('3. Área             - custa 6 tentativas')
+        string_opcoes=string_opcoes+'|3'
+    if(dicas_permitidas['4']):
+        print('4. População        - custa 5 tentativas')
+        string_opcoes=string_opcoes+'|4'
+    if(dicas_permitidas['5']):
+        string_opcoes=string_opcoes+'|5'
+    print('0. Voltar')
     print('----------------------------------------')
-    #necessário alterar depois
-    print('Escolha sua opção [0|1|2|3|4|5]:')
-    print('')
+    entrada_dicas = input('Escolha sua opção [0'+string_opcoes+']:')
+    return entrada_dicas
 
 def display_tentativas_restantes(tentativas):
     print('')
@@ -54,7 +67,7 @@ def display_sim_desisto():
 
 def display_distancias(array_distancias):
     for linhas in array_distancias:
-        print(linhas)
+        print(array_distancias[linhas])
 
 def ganhou1():
     print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
@@ -68,3 +81,5 @@ def digite_s_ou_n():
 def produtivo():
     print('É isso aí, bora ser produtivo! Até mais e bom final de semana!!')
 
+def erro_digito_opcao_dicas():
+    print('Epa! Essa não é uma das opções válidas! Presta atenção!')
