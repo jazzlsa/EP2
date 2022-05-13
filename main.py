@@ -86,7 +86,7 @@ while continuar == 's':
 
 
 
-      #mostra dica e avalia as dicas existentes
+      #mostra e avalia as dicas existentes
       if(entrada=='dica'):
         entrada_dicas = NULL
         entrada_dicas = display.display_mercado_dicas(dicas_permitidas)

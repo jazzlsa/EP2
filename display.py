@@ -5,11 +5,11 @@ from zmq import NULL
 
 def display_boas_vindas():
     print('')
-    print(' ✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀✿❀ ')
+    print(' ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ')
     print('☺                                ☺')
     print('☺   Bem-vindo ao Insper Países   ☺')
     print('☺                                ☺')
-    print(' ❀✿❀✿❀Design de Software✿❀✿❀ ')
+    print(' ✿ ❀ ✿ Design de Software✿ ❀ ✿ ❀ ')
     print('')
 
 def display_menu():
