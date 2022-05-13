@@ -202,3 +202,21 @@ def dicionario_cores_fundo(cor_fundo):
     cores_fundo['cinza_claro']=47
     cores_fundo['branco']=107
     return cores_fundo[cor_fundo]
+
+def dicas(entrada_dicas, pais_sorteado, dicionario_pais_sorteado):
+    area_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['area']
+    populacao_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['populacao']
+    capital_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['capital']
+    bandeira_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['bandeira']
+    continente_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['continente']
+    lista_restrita_bandeira=[]
+    lista_restrita_capital=[]
+    dicas_dic = {
+        '1' : cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira),
+        '2' : sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital),
+        '3' : area_pais_sorteado,
+        '4' : populacao_pais_sorteado,
+        '5' : continente_pais_sorteado,
+    }
+
+    return dicas_dic[entrada_dicas]
