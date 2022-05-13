@@ -9,6 +9,7 @@ lista_paises = []
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
 
+
 # Colocando os países na lista
 for pais in dados_normalizados.keys():
   lista_paises.append(pais)
@@ -26,7 +27,8 @@ while continuar == 's':
   #inicia quantidade de tentativas
   quantidade_tentativas = 3
   #define qual o país para se ganhar
-  pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
+  dicionario_pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
+  pais_sorteado = dicionario_pais_sorteado["nome"]
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
   #mostra o menu
