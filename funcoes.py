@@ -188,4 +188,17 @@ def dicionario_cores(cor):
     cores['ciano']=36
     cores['cinza_claro']=37
     cores['branco']=97
-    return cores['cor']
+    return cores[cor]
+
+def dicionario_cores_fundo(cor_fundo):
+    cores_fundo={}
+    cores_fundo['preto']=40
+    cores_fundo['vermelho']=41
+    cores_fundo['verde']=42
+    cores_fundo['amarelo']=43
+    cores_fundo['azul']=44
+    cores_fundo['magenta']=45
+    cores_fundo['ciano']=46
+    cores_fundo['cinza_claro']=47
+    cores_fundo['branco']=107
+    return cores_fundo[cor_fundo]
