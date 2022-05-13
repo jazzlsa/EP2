@@ -176,3 +176,16 @@ def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas):
     if(quantidade_tentativas>7):
         dicas_permitidas['5']=True
     return dicas_permitidas
+
+def dicionario_cores(cor):
+    cores={}
+    cores['preto']=30
+    cores['vermelho']=31
+    cores['verde']=32
+    cores['amarelo']=33
+    cores['azul']=34
+    cores['magenta']=35
+    cores['ciano']=36
+    cores['cinza_claro']=37
+    cores['branco']=97
+    return cores['cor']
