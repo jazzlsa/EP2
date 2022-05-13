@@ -1,4 +1,5 @@
 #funções de tela
+import funcoes
 from zmq import NULL
 
 
