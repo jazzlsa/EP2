@@ -92,7 +92,6 @@ def adiciona_em_ordem(nome, distancia, lista):
 # Sorteia Letra com Restrições - sorteia uma letra da capital
 #  Colocar letras ja sorteadas na lista de restrições
 def sorteia_letra_capital(palavra, lista_restrita):
-
     especiais = ['.', ',', '-', ';', ' ', '@', '!', '$', '%', '*', '(', ')', '{', '}', '[', ']', ':']
     saida = ''
     palavra = palavra.lower()
@@ -114,7 +113,6 @@ def sorteia_letra_capital(palavra, lista_restrita):
 # Sorteia uma cor da bandeira
 # Colocar tbm lista de restrição com as cores ja sorteadas
 def cor_bandeira(bandeira, lista_restrita):
-
     cores_possiveis = []
     saida = ''
 

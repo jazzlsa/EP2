@@ -25,25 +25,26 @@ def display_mercado_dicas(dicas_permitidas):
     string_opcoes=''
     outras_opcoes = False
     print('')
-    print('\033[1;30;45mMercado de Dicas                            \033[m')
-    print('\033[1;30;45m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
+    print('\033[1;35m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
+    print('')
     if(dicas_permitidas['1']):
-        print('\033[1;30;45m1. Cor da bandeira  - custa 4 tentativas\033[m')
+        print('\033[1;35m1. Cor da bandeira  - custa 4 tentativas (se retornar vazio, as cores acabaram e não tera tentativas descontadas)\033[m')
         string_opcoes=string_opcoes+'|1'
     if(dicas_permitidas['2']):
-        print('\033[1;30;45m2. Letra da capital - custa 3 tentativas\033[m')
+        print('\033[1;35m2. Letra da capital - custa 3 tentativas (se retornar vazio, a palavra acabou e não tera tentativas descontadas)\033[m')
         string_opcoes=string_opcoes+'|2'
     if(dicas_permitidas['3']):
-        print('\033[1;30;45m3. Área             - custa 6 tentativas\033[m')
+        print('\033[1;35m3. Área             - custa 6 tentativas\033[m')
         string_opcoes=string_opcoes+'|3'
     if(dicas_permitidas['4']):
-        print('\033[1;30;45m4. População        - custa 5 tentativas\033[m')
+        print('\033[1;35m4. População        - custa 5 tentativas\033[m')
         string_opcoes=string_opcoes+'|4'
     if(dicas_permitidas['5']):
         string_opcoes=string_opcoes+'|5'
-    print('\033[1;30;45m0. Voltar                                     \033[m')
-    print('\033[1;30;45m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
-    entrada_dicas = input('Escolha sua opção [0'+string_opcoes+']:')
+    print('\033[1;35m0. Voltar                                     \033[m')
+    print('')
+    print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
+    entrada_dicas = input('Escolha sua opção [0'+string_opcoes+']: ')
     return entrada_dicas
 
 def display_tentativas_restantes(tentativas):
@@ -93,4 +94,4 @@ def erro_digito_opcao_dicas():
 
 def display_dicas_ja_foram(dic_dicas):
     for ea in dic_dicas.values():
-        print(ea)
+        print('\033[1;92m'+str(ea)+'\033[m')

@@ -8,8 +8,8 @@ continuar ='s' #inicia continuar
 lista_paises = []
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
-lista_restrita_capital = []
-lista_restrita_bandeira = []
+lista_restrita_capital = [] # Inicializa lista que impede letras de se repetirem ao pedir a dica '2'
+lista_restrita_bandeira = [] # Inicializa lista que impede as cores de se repetirem ao pedir a dica '1'
 dicas_ja_foram = {}
 dic_dicas = {}
 
@@ -29,7 +29,7 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 12
+  quantidade_tentativas = 40
   #inicia dicas permitidas
   dicas_permitidas = {}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
@@ -57,6 +57,7 @@ while continuar == 's':
       distancia_tentativa = funcoes.haversine(pais_sorteado['latitude'], pais_sorteado['longitude'], dados_normalizados[entrada]['geo']['latitude'], dados_normalizados[entrada]['geo']['longitude'])
       #Adiciona distâncias na lista de tentativas
       distancias = funcoes.adiciona_tentativa(entrada,distancia_tentativa,distancias)
+      
       #mostra todas as distancias
       display.display_distancias(distancias)
       #mostra o restante das tentativas
@@ -83,7 +84,7 @@ while continuar == 's':
           #mostra mensagem de negação de desistencia
           display.display_nao_desisto()
 
-      #mostra inventário
+      # mostra inventário
       if(entrada=='inventario'):
       
         print('\033[1;35m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
@@ -93,7 +94,7 @@ while continuar == 's':
         dica = display.display_dicas_ja_foram(dic_dicas)
 
 
-      #mostra e avalia as dicas existentes
+      # mostra e avalia as dicas existentes -  caso o jogador escolha "dica"
       if(entrada=='dica'):
         entrada_dicas = NULL
         entrada_dicas = display.display_mercado_dicas(dicas_permitidas)
@@ -101,7 +102,7 @@ while continuar == 's':
 
         while(digito_correto==False):
 
-          if(isinstance(entrada_dicas, int)==False or entrada_dicas < 0 or entrada_dicas > 6):
+          if(isinstance(entrada_dicas, int)==False or entrada_dicas < -1 or entrada_dicas > 6):
             if(dicas_permitidas[str(entrada_dicas)]==False):
               display.erro_digito_opcao_dicas()
               entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
@@ -126,7 +127,9 @@ while continuar == 's':
               dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
               tela = display.display_dicas_ja_foram(dic_dicas)
 
-              quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
+              if dica != '': # Condição que impede de descontar as tentativas caso ja tenha conseguido todas as letras da capital ou todas as cores da bandeira
+                quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
+              
               display.display_tentativas_restantes(quantidade_tentativas)
              
 
