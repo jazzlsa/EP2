@@ -35,6 +35,7 @@ while continuar == 's':
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
+  print(pais_sorteado['nome'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
   #mostra o menu
@@ -84,9 +85,12 @@ while continuar == 's':
 
       #mostra inventário
       if(entrada=='inventario'):
+      
+        print('\033[1;35m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
         display.display_distancias(distancias)
+        print()
+        print('\033[1;35m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
         dica = display.display_dicas_ja_foram(dic_dicas)
-
 
 
       #mostra e avalia as dicas existentes
@@ -122,8 +126,8 @@ while continuar == 's':
               dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
               tela = display.display_dicas_ja_foram(dic_dicas)
 
-              quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1,distancias,entrada)
-              #display.display_tentativas_restantes(quantidade_tentativas)
+              quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
+              display.display_tentativas_restantes(quantidade_tentativas)
              
 
       #verifica se não é uma das opções. Se não for mostra msg de informação errada

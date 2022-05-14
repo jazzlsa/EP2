@@ -14,11 +14,11 @@ def display_boas_vindas():
 
 def display_menu():
     print('')
-    print('\033[1;30;45mComandos:                                     \033[m')
-    print('\033[1;30;45mdica       - Entra no mercado de dicas\033[m')
-    print('\033[1;30;45mdesisto    - Desiste da rodada        \033[m')
-    print('\033[1;30;45minventario - Exibe sua posição        \033[m')
-    print('\033[1;30;45mmenu       - Exibe este menu                             \033[m')
+    print('\033[1;35mComandos:                                     \033[m')
+    print('\033[1;35mdica       - Entra no mercado de dicas\033[m')
+    print('\033[1;35mdesisto    - Desiste da rodada        \033[m')
+    print('\033[1;35minventario - Exibe sua posição        \033[m')
+    print('\033[1;35mmenu       - Exibe este menu                             \033[m')
     print('')
     
 def display_mercado_dicas(dicas_permitidas):
