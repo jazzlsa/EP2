@@ -8,6 +8,10 @@ continuar ='s' #inicia continuar
 lista_paises = []
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
+lista_restrita_capital = []
+lista_restrita_bandeira = []
+dicas_ja_foram = {}
+dic_dicas = {}
 
 
 # Colocando os países na lista
@@ -81,8 +85,7 @@ while continuar == 's':
       #mostra inventário
       if(entrada=='inventario'):
         display.display_distancias(distancias)
-
-
+        dica = display.display_dicas_ja_foram(dic_dicas)
 
 
 
@@ -91,19 +94,37 @@ while continuar == 's':
         entrada_dicas = NULL
         entrada_dicas = display.display_mercado_dicas(dicas_permitidas)
         digito_correto = False
+
         while(digito_correto==False):
+
           if(isinstance(entrada_dicas, int)==False or entrada_dicas < 0 or entrada_dicas > 6):
             if(dicas_permitidas[str(entrada_dicas)]==False):
               display.erro_digito_opcao_dicas()
               entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
+
             else:
               digito_correto=True
-              print('AEEE')
-              #print(funcoes.dicas(entrada_dicas, pais_sorteado, funcoes.cria_dicionario_pais_sorteado(pais_sorteado,dados_normalizados)))
+              nova_dica = ''
+
+              retorno_funcao = funcoes.dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital)
+
+              dica = retorno_funcao[0]
+              custo_tentativa = int(retorno_funcao[1])
+              identificador = retorno_funcao[2]
+
+              nova_dica = '- {}{}'.format(identificador, dica)
+
+              if entrada_dicas == '1':
+                lista_restrita_bandeira.append(dica)
+              if entrada_dicas == '2':
+                lista_restrita_capital.append(dica)
+
+              dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
+              tela = display.display_dicas_ja_foram(dic_dicas)
+
+              quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1,distancias,entrada)
+              #display.display_tentativas_restantes(quantidade_tentativas)
              
-
-
-
 
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if(entrada not in ['menu','dica','desisto','s','n','inventario']):
