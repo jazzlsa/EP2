@@ -49,12 +49,12 @@ def display_mercado_dicas(dicas_permitidas):
 def display_tentativas_restantes(tentativas):
     print('')
     if tentativas > 10:
-        print('Você possui \033[1;32m'+str(tentativas)+'\033[m restantes')
+        print('Você possui \033[1;32m'+str(tentativas)+'\033[m tentativas restantes')
     else: 
         if tentativas <= 10 and tentativas > 5:
-            print('Você possui \033[1;33m'+str(tentativas)+'\033[m restantes')
+            print('Você possui \033[1;33m'+str(tentativas)+'\033[m tentativas restantes')
         else:
-            print('Você possui \033[1;31m'+str(tentativas)+'\033[m restantes')
+            print('Você possui \033[1;31m'+str(tentativas)+'\033[m tentativas restantes')
     print('')
 
 def display_confirma_desisto():
