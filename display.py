@@ -14,35 +14,35 @@ def display_boas_vindas():
 
 def display_menu():
     print('')
-    print('Comandos:')
-    print('dica       - Entra no mercado de dicas')
-    print('desisto    - Desiste da rodada')
-    print('inventario - Exibe sua posição')
-    print('menu       - Exibe este menu')
+    print('\033[1;30;45mComandos:                                     \033[m')
+    print('\033[1;30;45mdica       - Entra no mercado de dicas\033[m')
+    print('\033[1;30;45mdesisto    - Desiste da rodada        \033[m')
+    print('\033[1;30;45minventario - Exibe sua posição        \033[m')
+    print('\033[1;30;45mmenu       - Exibe este menu                             \033[m')
     print('')
     
 def display_mercado_dicas(dicas_permitidas):
     string_opcoes=''
     outras_opcoes = False
     print('')
-    print('Mercado de Dicas')
-    print('----------------------------------------')
+    print('\033[1;30;45mMercado de Dicas                            \033[m')
+    print('\033[1;30;45m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     if(dicas_permitidas['1']):
-        print('1. Cor da bandeira  - custa 4 tentativas')
+        print('\033[1;30;45m1. Cor da bandeira  - custa 4 tentativas\033[m')
         string_opcoes=string_opcoes+'|1'
     if(dicas_permitidas['2']):
-        print('2. Letra da capital - custa 3 tentativas')
+        print('\033[1;30;45m2. Letra da capital - custa 3 tentativas\033[m')
         string_opcoes=string_opcoes+'|2'
     if(dicas_permitidas['3']):
-        print('3. Área             - custa 6 tentativas')
+        print('\033[1;30;45m3. Área             - custa 6 tentativas\033[m')
         string_opcoes=string_opcoes+'|3'
     if(dicas_permitidas['4']):
-        print('4. População        - custa 5 tentativas')
+        print('\033[1;30;45m4. População        - custa 5 tentativas\033[m')
         string_opcoes=string_opcoes+'|4'
     if(dicas_permitidas['5']):
         string_opcoes=string_opcoes+'|5'
-    print('0. Voltar')
-    print('----------------------------------------')
+    print('\033[1;30;45m0. Voltar                                     \033[m')
+    print('\033[1;30;45m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     entrada_dicas = input('Escolha sua opção [0'+string_opcoes+']:')
     return entrada_dicas
 
