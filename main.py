@@ -29,13 +29,12 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 40
+  quantidade_tentativas = 20
   #inicia dicas permitidas
   dicas_permitidas = {}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
-  print(pais_sorteado['nome'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
   #mostra o menu
@@ -134,16 +133,16 @@ while continuar == 's':
              
 
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
-      if(entrada not in ['menu','dica','desisto','s','n','inventario']):
+      if entrada not in ['menu','dica','desisto','s','n','inventario'] and entrada != pais_sorteado['nome']:
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
       #verifica se o pais digitado é o correto
       if(entrada==pais_sorteado['nome']):
         ganhou = True
   #mostra mensagem caso tenha perdido
-  if(ganhou==False):
+  if(ganhou == False):
     print('Ihhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?')
   #mostra mensagem caso tenha ganhado
-  if(ganhou==True):
+  if(ganhou == True):
     display.ganhou1()
   #mostra mensagem se quer mais uma rodada
   display.jogar_novamente()

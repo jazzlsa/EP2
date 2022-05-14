@@ -40,6 +40,7 @@ def display_mercado_dicas(dicas_permitidas):
         print('\033[1;35m4. População        - custa 5 tentativas\033[m')
         string_opcoes=string_opcoes+'|4'
     if(dicas_permitidas['5']):
+        print('\033[1;35m5. Continente        - custa 7 tentativas\033[m')
         string_opcoes=string_opcoes+'|5'
     print('\033[1;35m0. Voltar                                     \033[m')
     print('')
