@@ -90,3 +90,7 @@ def produtivo():
 
 def erro_digito_opcao_dicas():
     print('Epa! Essa não é uma das opções válidas! Presta atenção!')
+
+def display_dicas_ja_foram(dic_dicas):
+    for ea in dic_dicas.values():
+        print(ea)

@@ -178,20 +178,37 @@ def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas):
     return dicas_permitidas
 
 
-def dicas(entrada_dicas, pais_sorteado, dicionario_pais_sorteado):
-    area_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['area']
-    populacao_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['populacao']
-    capital_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['capital']
-    bandeira_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['bandeira']
-    continente_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['continente']
-    lista_restrita_bandeira=[]
-    lista_restrita_capital=[]
+def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital):
+
+    area_pais_sorteado = pais_sorteado['area']
+    populacao_pais_sorteado = pais_sorteado['populacao']
+    capital_pais_sorteado = pais_sorteado['capital']
+    bandeira_pais_sorteado = pais_sorteado['bandeira']
+    continente_pais_sorteado = pais_sorteado['continente']
+
     dicas_dic = {
-        '1' : cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira),
-        '2' : sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital),
-        '3' : area_pais_sorteado,
-        '4' : populacao_pais_sorteado,
-        '5' : continente_pais_sorteado,
+        '1' : [cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira), '4', 'Cor da Bandeira: '],
+        '2' : [sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital), '3', 'Letra da capital: '],
+        '3' : [area_pais_sorteado, '6', 'Área: '],
+        '4' : [populacao_pais_sorteado, '5', 'População: '],
+        '5' : [continente_pais_sorteado, '7', 'Continente: '],
     }
 
-    return dicas_dic[entrada_dicas]
+    dados = dicas_dic[entrada_dicas]
+    dica = dados[0]
+    tentativas_gastas = dados[1]
+    identificador = dados[2]
+
+    return dica, tentativas_gastas, identificador
+
+
+def adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica):
+    if entrada_dicas not in dicas_ja_foram.keys():
+        dicas_ja_foram[entrada_dicas] = nova_dica
+
+    elif entrada_dicas == '1':
+        dicas_ja_foram[entrada_dicas] += ', {}'.format(dica)
+    elif entrada_dicas == '2':
+        dicas_ja_foram[entrada_dicas] += ', {}'.format(dica)
+
+    return dicas_ja_foram

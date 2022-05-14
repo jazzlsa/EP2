@@ -1,6 +1,7 @@
 import funcoes
+import display
 
-dicionario_pais_sorteado = {
+pais_sorteado = {
   "afeganistao": {
     "area": 652230,
     "populacao": 31390200,
@@ -22,32 +23,27 @@ dicionario_pais_sorteado = {
     },
     "continente": "asia"}}
 
-pais_sorteado = 'afeganistao'
+def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital):
+    pais = 'afeganistao'
 
-def dicas(num_escolhido):
-  
-    area_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['area']
-    populacao_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['populacao']
-    capital_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['capital']
-    bandeira_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['bandeira']
-    continente_pais_sorteado = dicionario_pais_sorteado[pais_sorteado]['continente']
+    area_pais_sorteado = pais_sorteado[pais]['area']
+    populacao_pais_sorteado = pais_sorteado[pais]['populacao']
+    capital_pais_sorteado = pais_sorteado[pais]['capital']
+    bandeira_pais_sorteado = pais_sorteado[pais]['bandeira']
+    continente_pais_sorteado = pais_sorteado[pais]['continente']
 
     dicas_dic = {
         '1' : [funcoes.cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira), '4', 'Cor da Bandeira: '],
         '2' : [funcoes.sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital), '3', 'Letra da capital: '],
         '3' : [area_pais_sorteado, '6', 'Área: '],
         '4' : [populacao_pais_sorteado, '5', 'População: '],
-        '5' : [continente_pais_sorteado, '7', 'Continente: ']
+        '5' : [continente_pais_sorteado, '7', 'Continente: '],
     }
 
-    dados = dicas_dic[num_escolhido]
-
+    dados = dicas_dic[entrada_dicas]
     dica = dados[0]
     tentativas_gastas = dados[1]
     identificador = dados[2]
-
-    #if num_escolhido == '2':
-    #    lista_restrita_capital.append(dica)   ----> vai ter que adicionar isso fora da função (o mesmo para a bandeira)
 
     return dica, tentativas_gastas, identificador
 
@@ -58,13 +54,18 @@ def dicas(num_escolhido):
 continuar = True
 lista_restrita_capital = []
 lista_restrita_bandeira = []
-dicas_ja_foram = []
+dicas_ja_foram = {}
+dic_dicas = {}
+nova_dica = ''
+quantidade_tentativas = 10
 
 while continuar:
 
   simulacao = True
 
   while simulacao:
+    nova_dica = ''
+
     print('Mercado de Dicas')
     print('✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ')
     print('1. Cor da bandeira  - custa 4 tentativas')
@@ -74,19 +75,47 @@ while continuar:
     print('5. Continente       - custa 7 tentativas')
     print('0. Sem dica')
     print('✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ')
-    num = input('Escolha sua opção [0|1|2|3|4|5]: ')
-    dicas_ja_foram.append(num)
+    entrada_dicas = input('Escolha sua opção [0|1|2|3|4|5]: ')
 
-    retorno_funcao = dicas(num)
+    retorno_funcao = dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital)
 
     dica = retorno_funcao[0]
-    custo_tentativa = retorno_funcao[1]
+    custo_tentativa = int(retorno_funcao[1])
     identificador = retorno_funcao[2]
 
-    print(dica, custo_tentativa, identificador, dicas_ja_foram)
+    print(custo_tentativa)
+
+    nova_dica = '- {}{}'.format(identificador, dica)
+
+    if entrada_dicas == '1':
+      lista_restrita_bandeira.append(dica)
+    if entrada_dicas == '2':
+      lista_restrita_capital.append(dica)
+
+'''
+    def adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica):
+
+      if entrada_dicas not in dicas_ja_foram.keys():
+        dicas_ja_foram[entrada_dicas] = nova_dica
+
+      elif entrada_dicas == '1':
+        dicas_ja_foram[entrada_dicas] += ', {}'.format(dica)
+      elif entrada_dicas == '2':
+        dicas_ja_foram[entrada_dicas] += ', {}'.format(dica)
+
+      return dicas_ja_foram
+
+    dic_dicas = adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
+
+    def display_dicas_ja_foram(dic_dicas):
+      for ea in dic_dicas.values():
+        print(ea)
+
+    eae = display_dicas_ja_foram(dic_dicas)
 
     simulacao = False
 
     respost = input('quer continuar? ')
     if respost == 'n':
       continuar = False
+'''
