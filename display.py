@@ -57,7 +57,7 @@ def display_mercado_dicas(dicas_permitidas):
         string_opcoes=string_opcoes+'|\033[1;35m5\033[m'
     print('\033[1;35m0.\033[m \033[1;37mVoltar                                     \033[m')
     print('')
-    print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
+    print('\033[1;95m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
     print()
     entrada_dicas = input('Escolha sua opção [\033[1;35m0\033[m'+string_opcoes+']: ')
     print()
@@ -97,13 +97,13 @@ def display_distancias(array_distancias):
         string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
         
         if array_distancias[distancias] > 10000:
-            print('\033[1;94m'+string+'\033[m')
+            print('\033[1;31m'+string+'\033[m')
         elif array_distancias[distancias] <= 10000 and array_distancias[distancias] > 5000:
-            print('\033[1;33m'+string+'\033[m')
+            print('\033[1;93m'+string+'\033[m')
         elif array_distancias[distancias] <= 5000 and array_distancias[distancias] > 1000:
-            print('\033[1;32m'+string+'\033[m')
+            print('\033[1;92m'+string+'\033[m')
         else:
-            print('\033[1;35m'+string+'\033[m')
+            print('\033[1;96m'+string+'\033[m')
 
 def ganhou1():
     print('\033[1;92mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
