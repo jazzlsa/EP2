@@ -45,6 +45,7 @@ def display_mercado_dicas(dicas_permitidas):
     print('\033[1;35m0. Voltar                                     \033[m')
     print('')
     print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
+    print()
     entrada_dicas = input('\033[1;35mEscolha sua opção [0'+string_opcoes+']: \033[m')
     print()
     return entrada_dicas
@@ -92,7 +93,7 @@ def display_distancias(array_distancias):
             print('\033[1;35m'+string+'\033[m')
 
 def ganhou1():
-    print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
+    print('\033[1;92mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
 
 def jogar_novamente():
     print('Tá afim de procrastinar mais um pouco? Quer mais uma rodada?[s/n]')
