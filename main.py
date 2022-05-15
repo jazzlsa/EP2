@@ -43,7 +43,7 @@ while continuar == 's':
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
-  
+  print(pais_sorteado['nome'])
   #diz que um país foi sorteado e numero de tentativas restantes
   display.advinha_pais()
   display.display_tentativas_restantes(quantidade_tentativas)
@@ -168,7 +168,7 @@ while continuar == 's':
     print()
   #mostra mensagem caso tenha ganhado
   if(ganhou == True):
-    display.ganhou1()
+    display.ganhou1(distancias)
     print()
   #mostra mensagem se quer mais uma rodada
   display.jogar_novamente()
