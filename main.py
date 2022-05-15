@@ -109,10 +109,10 @@ while continuar == 's':
         print('\033[;1m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
         if(len(dic_dicas)==0):
           print('\033[1;35mNenhuma dica comprada\033[m')
+          display.display_tentativas_restantes(quantidade_tentativas)
         else:
           dica = display.display_dicas_ja_foram(dic_dicas)
         print()
-
       # mostra e avalia as dicas existentes -  caso o jogador escolha "dica"
       if(entrada=='dica'):
         entrada_dicas = NULL
@@ -154,7 +154,7 @@ while continuar == 's':
             quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
             dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
           
-          display.display_tentativas_restantes(quantidade_tentativas)
+        display.display_tentativas_restantes(quantidade_tentativas)
         
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if entrada not in ['menu','dica','desisto','inventario'] and entrada != pais_sorteado['nome']:

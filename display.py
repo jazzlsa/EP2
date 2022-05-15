@@ -18,11 +18,11 @@ def display_boas_vindas():
 
 def display_menu():
     print('')
-    print('\033[1;35mComandos:                                     \033[m')
-    print('\033[1;35mdica       - Entra no mercado de dicas\033[m')
-    print('\033[1;35mdesisto    - Desiste da rodada        \033[m')
-    print('\033[1;35minventario - Exibe sua posição        \033[m')
-    print('\033[1;35mmenu       - Exibe este menu                             \033[m')
+    print('Comandos:')
+    print('\033[1;35mdica\033[m       - Entra no mercado de dicas')
+    print('\033[1;35mdesisto\033[m    - Desiste da rodada')
+    print('\033[1;35minventario\033[m - Exibe sua posição')
+    print('\033[1;35mmenu\033[m       - Exibe este menu')
     print('')
     
 def display_mercado_dicas(dicas_permitidas):
@@ -38,28 +38,28 @@ def display_mercado_dicas(dicas_permitidas):
         return '0'
     
     print('')
-    print('\033[1;35m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
+    print('\033[1;35m✿ ❀ ✿ ❀ ✿\033[m  \033[1;37mMercado de Dicas\033[m \033[1;35m❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     print('')
     if(dicas_permitidas['1']):
-        print('\033[1;35m1. Cor da bandeira  - custa 4 tentativas\033[m')
-        string_opcoes=string_opcoes+'|1'
+        print('\033[1;35m1.\033[m \033[1;37mCor da bandeira  - custa\033[m \033[1;35m4\033[m \033[1;37mtentativas\033[m')
+        string_opcoes=string_opcoes+'|\033[1;35m1\033[m'
     if(dicas_permitidas['2']):
-        print('\033[1;35m2. Letra da capital - custa 3 tentativas\033[m')
-        string_opcoes=string_opcoes+'|2'
+        print('\033[1;35m2.\033[m \033[1;37mLetra da capital - custa\033[m \033[1;35m3\033[m \033[1;37mtentativas\033[m')
+        string_opcoes=string_opcoes+'|\033[1;35m2\033[m'
     if(dicas_permitidas['3']):
-        print('\033[1;35m3. Área             - custa 6 tentativas\033[m')
-        string_opcoes=string_opcoes+'|3'
+        print('\033[1;35m3.\033[m \033[1;37mÁrea             - custa\033[m \033[1;35m6\033[m \033[1;37mtentativas\033[m')
+        string_opcoes=string_opcoes+'|\033[1;35m3\033[m'
     if(dicas_permitidas['4']):
-        print('\033[1;35m4. População        - custa 5 tentativas\033[m')
-        string_opcoes=string_opcoes+'|4'
+        print('\033[1;35m4.\033[m \033[1;37mPopulação        - custa\033[m \033[1;35m5\033[m \033[1;37mtentativas\033[m')
+        string_opcoes=string_opcoes+'|\033[1;35m4\033[m'
     if(dicas_permitidas['5']):
-        print('\033[1;35m5. Continente        - custa 7 tentativas\033[m')
-        string_opcoes=string_opcoes+'|5'
-    print('\033[1;35m0. Voltar                                     \033[m')
+        print('\033[1;35m5.\033[m \033[1;37mContinente       - custa\033[m \033[1;35m7\033[m \033[1;37mtentativas\033[m')
+        string_opcoes=string_opcoes+'|\033[1;35m5\033[m'
+    print('\033[1;35m0.\033[m \033[1;37mVoltar                                     \033[m')
     print('')
     print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
     print()
-    entrada_dicas = input('\033[1;35mEscolha sua opção [0'+string_opcoes+']: \033[m')
+    entrada_dicas = input('Escolha sua opção [\033[1;35m0\033[m'+string_opcoes+']: ')
     print()
     return entrada_dicas
 
