@@ -96,14 +96,16 @@ def display_distancias(array_distancias):
     for distancias in array_distancias:
         string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
         
-        if array_distancias[distancias] > 10000:
-            print('\033[1;31m'+string+'\033[m')
-        elif array_distancias[distancias] <= 10000 and array_distancias[distancias] > 5000:
-            print('\033[1;93m'+string+'\033[m')
-        elif array_distancias[distancias] <= 5000 and array_distancias[distancias] > 1000:
-            print('\033[1;92m'+string+'\033[m')
-        else:
+        if array_distancias[distancias] > 15000:
             print('\033[1;96m'+string+'\033[m')
+        elif array_distancias[distancias] <= 15000 and array_distancias[distancias] > 10000:
+            print('\033[1;94m'+string+'\033[m')
+        elif array_distancias[distancias] <= 10000 and array_distancias[distancias] > 5000:
+            print('\033[1;33m'+string+'\033[m')
+        elif array_distancias[distancias] <= 5000 and array_distancias[distancias] > 1000:
+            print('\033[1;32m'+string+'\033[m')
+        else:
+            print('\033[1;35m'+string+'\033[m')
 
 def ganhou1():
     print('\033[1;92mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
