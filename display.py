@@ -93,20 +93,20 @@ def display_distancias(array_distancias):
             print('\033[1;35m'+string+'\033[m')
 
 def ganhou1():
-    print('\033[1;92mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
+    print('\033[1;35mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
 
 def jogar_novamente():
-    print('Tá afim de procrastinar mais um pouco? Quer mais uma rodada?[s/n]')
+    print('\033[1;35mTá afim de procrastinar mais um pouco? Quer mais uma rodada?[s/n]\033[m')
 
 def digite_s_ou_n():
-    print('EEEEE cabeção! É apenas s ou n')
+    print('\033[1;35mEEEEE cabeção! É apenas s ou n\033[m')
 
 def produtivo():
-    print('É isso aí, bora ser produtivo! Até mais e bom final de semana!!')
+    print('\033[1;35mÉ isso aí, bora ser produtivo! Até mais e bom final de semana!!\033[m')
 
 def erro_digito_opcao_dicas():
-    print('Epa! Essa não é uma das opções válidas! Presta atenção!')
+    print('\033[1;35mEpa! Essa não é uma das opções válidas! Presta atenção!\033[m')
 
 def display_dicas_ja_foram(dic_dicas):
     for ea in dic_dicas.values():
-        print('\033[1;92m'+str(ea)+'\033[m')
+        print('\033[1;35m'+str(ea)+'\033[m')
