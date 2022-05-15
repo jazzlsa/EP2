@@ -51,13 +51,15 @@ def display_mercado_dicas(dicas_permitidas):
 
 def display_tentativas_restantes(tentativas):
     print('')
-    if tentativas > 10:
+    if tentativas > 15:
+        print('Você possui \033[1;35m'+str(tentativas)+'\033[m tentativas restantes')
+    
+    elif tentativas <= 15 and tentativas > 10:
+        print('Você possui \033[1;33m'+str(tentativas)+'\033[m tentativas restantes')
+    elif tentativas <= 10 and tentativas > 5:
         print('Você possui \033[1;32m'+str(tentativas)+'\033[m tentativas restantes')
-    else: 
-        if tentativas <= 10 and tentativas > 5:
-            print('Você possui \033[1;33m'+str(tentativas)+'\033[m tentativas restantes')
-        else:
-            print('Você possui \033[1;31m'+str(tentativas)+'\033[m tentativas restantes')
+    elif tentativas <= 10 and tentativas <= 5:
+        print('Você possui \033[1;31m'+str(tentativas)+'\033[m tentativas restantes')
     print('')
 
 def display_confirma_desisto():
@@ -81,12 +83,13 @@ def display_distancias(array_distancias):
         string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
         
         if array_distancias[distancias] > 10000:
-            print('\033[1;31m'+string+'\033[m')
-        else: 
-            if array_distancias[distancias] <= 10000 and array_distancias[distancias] > 1000:
-                print('\033[1;33m'+string+'\033[m')
-            else:
-                print('\033[1;32m'+string+'\033[m')
+            print('\033[1;94m'+string+'\033[m')
+        elif array_distancias[distancias] <= 10000 and array_distancias[distancias] > 5000:
+            print('\033[1;33m'+string+'\033[m')
+        elif array_distancias[distancias] <= 5000 and array_distancias[distancias] > 1000:
+            print('\033[1;32m'+string+'\033[m')
+        else:
+            print('\033[1;35m'+string+'\033[m')
 
 def ganhou1():
     print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
