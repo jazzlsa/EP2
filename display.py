@@ -19,6 +19,7 @@ def display_boas_vindas():
 def display_menu():
     print('')
     print('\033[1;35mComandos:                                     \033[m')
+    print('')
     print('\033[1;35mdica       - Entra no mercado de dicas\033[m')
     print('\033[1;35mdesisto    - Desiste da rodada        \033[m')
     print('\033[1;35minventario - Exibe sua posição        \033[m')
@@ -38,26 +39,26 @@ def display_mercado_dicas(dicas_permitidas):
         return '0'
     
     print('')
-    print('\033[1;35m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
+    print('\033[1;95m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     print('')
     if(dicas_permitidas['1']):
-        print('\033[1;35m1. Cor da bandeira  - custa 4 tentativas\033[m')
+        print('\033[1;95m1. Cor da bandeira  - custa 4 tentativas\033[m')
         string_opcoes=string_opcoes+'|1'
     if(dicas_permitidas['2']):
-        print('\033[1;35m2. Letra da capital - custa 3 tentativas\033[m')
+        print('\033[1;95m2. Letra da capital - custa 3 tentativas\033[m')
         string_opcoes=string_opcoes+'|2'
     if(dicas_permitidas['3']):
-        print('\033[1;35m3. Área             - custa 6 tentativas\033[m')
+        print('\033[1;95m3. Área             - custa 6 tentativas\033[m')
         string_opcoes=string_opcoes+'|3'
     if(dicas_permitidas['4']):
-        print('\033[1;35m4. População        - custa 5 tentativas\033[m')
+        print('\033[1;95m4. População        - custa 5 tentativas\033[m')
         string_opcoes=string_opcoes+'|4'
     if(dicas_permitidas['5']):
-        print('\033[1;35m5. Continente        - custa 7 tentativas\033[m')
+        print('\033[1;95m5. Continente       - custa 7 tentativas\033[m')
         string_opcoes=string_opcoes+'|5'
-    print('\033[1;35m0. Voltar                                     \033[m')
+    print('\033[1;95m0. Voltar                                     \033[m')
     print('')
-    print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
+    print('\033[1;95m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
     print()
     entrada_dicas = input('\033[1;35mEscolha sua opção [0'+string_opcoes+']: \033[m')
     print()
@@ -97,13 +98,13 @@ def display_distancias(array_distancias):
         string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
         
         if array_distancias[distancias] > 10000:
-            print('\033[1;94m'+string+'\033[m')
+            print('\033[1;31m'+string+'\033[m')
         elif array_distancias[distancias] <= 10000 and array_distancias[distancias] > 5000:
-            print('\033[1;33m'+string+'\033[m')
+            print('\033[1;93m'+string+'\033[m')
         elif array_distancias[distancias] <= 5000 and array_distancias[distancias] > 1000:
-            print('\033[1;32m'+string+'\033[m')
+            print('\033[1;92m'+string+'\033[m')
         else:
-            print('\033[1;35m'+string+'\033[m')
+            print('\033[1;96m'+string+'\033[m')
 
 def ganhou1():
     print('\033[1;92mAhhhhh moleque! Parabéns! A vida tá fácil, hein?!\033[m')
