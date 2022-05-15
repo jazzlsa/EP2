@@ -46,13 +46,14 @@ while continuar == 's':
   #mostra o menu
   display.display_menu()
   display.display_tentativas_restantes(quantidade_tentativas)
-  distancias2 = []
   print()
+  distancias2 = []
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
     #pega o que ele for digitar
     entrada = input('Qual é o país sorteado? ')
+    entrada = entrada.lower()
     #pula linha
     print()
 
@@ -82,15 +83,18 @@ while continuar == 's':
         #laço para o usuário digitar apenas S ou N
         while(entrada!='s' and entrada!='n'):
           display.display_confirma_desisto()
+          entrada = input()
         #confirmação de desistencia
         if(entrada=='s'):
           #mostra mensagem de desistencia
           display.display_sim_desisto()
           desistiu=True
+          entrada='desisto'
         #negação de desistencia
         if(entrada=='n'):
           #mostra mensagem de negação de desistencia
           display.display_nao_desisto()
+          entrada='desisto'
 
       # mostra inventário
       if(entrada=='inventario'):
@@ -153,14 +157,14 @@ while continuar == 's':
           display.display_tentativas_restantes(quantidade_tentativas)
         
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
-      if entrada not in ['menu','dica','desisto','s','n','inventario'] and entrada != pais_sorteado['nome']:
+      if entrada not in ['menu','dica','desisto','inventario'] and entrada != pais_sorteado['nome']:
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
       #verifica se o pais digitado é o correto
       if(entrada==pais_sorteado['nome']):
         ganhou = True
   #mostra mensagem caso tenha perdido
   if(ganhou == False):
-    print('\033[1;31mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
+    print('\033[1;35mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
     print()
   #mostra mensagem caso tenha ganhado
   if(ganhou == True):
@@ -176,5 +180,6 @@ while continuar == 's':
     if(entrada!='s' and entrada!='n'):
       display.digite_s_ou_n()
   continuar=entrada
+  entrada='desisto'
 #mostra mensagem final
 display.produtivo()
