@@ -46,6 +46,7 @@ while continuar == 's':
   display.display_menu()
   display.display_tentativas_restantes(quantidade_tentativas)
   print()
+  distancias2 = []
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:

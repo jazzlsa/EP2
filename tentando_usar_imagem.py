@@ -1,8 +1,18 @@
 # Lendo de linha em linha (note o plural em readlines)
 with open('rapozinha.txt', 'r') as arquivo:
-    # linhas é uma lista de strings, cada linha é uma string diferente
     linhas = arquivo.readlines()
-    # Verificando que linhas é uma lista de strings
-    # Imprimindo de linha em linha
-    for linha in linhas:
-        print(linha)
+    arquivo.close()
+
+raposinha = []
+for linha in linhas:
+    raposinha.append(linha)
+for li in raposinha:
+    print('\033[1;35m'+str(li)+'\033[m', end='')
+
+'''
+print('\033[1;30;45m  ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀   \033[m')
+    print('\033[1;30;45m ☺                                ☺ \033[m')
+    print('\033[1;30;45m ☺   Bem-vindo ao Insper Países   ☺ \033[m')
+    print('\033[1;30;45m ☺                                ☺ \033[m')
+    print('\033[1;30;45m  ✿ ❀ ✿ Design de Software✿ ❀ ✿ ❀   \033[m')
+'''
