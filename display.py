@@ -109,7 +109,7 @@ def display_distancias(array_distancias):
             print('\033[1;35m'+string+'\033[m')
 
 def ganhou1(array_distancias):
-    print('\033[1;35mAhhhhh moleque! Parabéns! Você acertou após \033[m'+str(len(array_distancias)+1)+'\033[1;35m tentativa(s) A vida tá fácil, hein?!\033[m')
+    print('\033[1;35mAhhhhh moleque! Parabéns! Você acertou após \033[m'+str(len(array_distancias)+1)+'\033[1;35m tentativa(s). A vida tá fácil, hein?!\033[m')
 
 def jogar_novamente():
     print('\033[1;35mTá afim de procrastinar mais um pouco? Quer mais uma rodada?[s/n]\033[m')
