@@ -61,13 +61,6 @@ def esta_na_lista(pais, listas):
 
 # Adicionando em uma Lista Ordenada - retorna uma lista crescente com as distancias dos paises ja selecionados pelo jogador 
 def adiciona_em_ordem(nome, distancia, lista):
-    
-    #lista_1=[nome, distancia]
-    #if
-    #lista.append(lista_1)
-    
-    
-    
     lista_1=[nome, distancia]
     lista_ordenada=[]
     contador=0
@@ -94,9 +87,7 @@ def adiciona_em_ordem(nome, distancia, lista):
             for k in range(contador+1,len(lista)):
                 lista_ordenada.append([lista[k][0], lista[k][1]])
         
-    
     return lista_ordenada
-
 
 
 # Sorteia Letra com Restrições - sorteia uma letra da capital
@@ -113,7 +104,7 @@ def sorteia_letra_capital(palavra, lista_restrita,dicas_permitidas,quantidade_te
         if letra not in especiais and letra not in lista_restrita and letra not in palavra_lista:
             palavra_lista.append(letra)
             continua = True
-    
+
     if(continua==False):
         atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'2')
 
@@ -167,27 +158,24 @@ def debita_tentativa(total, debito, tentativas, entrada):
     return total
 
 def adiciona_tentativa(entrada,distancia_tentativa,distancias):
-    #distancias[entrada] = {}
-    #distancias[entrada]['string'] = entrada + ' : ' + distancia_tentativa + ' km'
-    #distancias[entrada]['distancia'] = int(distancia_tentativa.replace('.',''))
-    #distancias = sorted(distancias.items(), key=lambda item: item[2])
     distancias[entrada]=int(distancia_tentativa)
     distancias = dict(sorted(distancias.items(), key=operator.itemgetter(1),reverse=True))
     return distancias
 
 def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,dica_bloqueada):
+    quantidade_tentativas = int(quantidade_tentativas)
+    if(quantidade_tentativas<4 and dicas_permitidas['1']==True):
+        dicas_permitidas['1']=False
+    if(quantidade_tentativas<3 and dicas_permitidas['2']==True):
+        dicas_permitidas['2']=False
+    if(quantidade_tentativas<6 and dicas_permitidas['3']==True):
+        dicas_permitidas['3']=False
+    if(quantidade_tentativas<5 and dicas_permitidas['4']==True):
+        dicas_permitidas['4']=False
+    if(quantidade_tentativas<7 and dicas_permitidas['5']==True):
+        dicas_permitidas['5']=False
     if(dica_bloqueada!=''):
         dicas_permitidas[str(dica_bloqueada)]=False
-    if(quantidade_tentativas>4 and dicas_permitidas['1']==''):
-        dicas_permitidas['1']=True
-    if(quantidade_tentativas>3 and dicas_permitidas['2']==''):
-        dicas_permitidas['2']=True
-    if(quantidade_tentativas>6 and dicas_permitidas['3']==''):
-        dicas_permitidas['3']=True
-    if(quantidade_tentativas>5 and dicas_permitidas['4']==''):
-        dicas_permitidas['4']=True
-    if(quantidade_tentativas>7 and dicas_permitidas['5']==''):
-        dicas_permitidas['5']=True
     return dicas_permitidas
 
 
@@ -199,16 +187,17 @@ def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_
     bandeira_pais_sorteado = pais_sorteado['bandeira']
     continente_pais_sorteado = pais_sorteado['continente']
 
-    dicas_dic = {
-        '1' : [cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira), '4', 'Cor da Bandeira: '],
-        '2' : [sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital,dicas_permitidas,quantidade_tentativas), '3', 'Letra da capital: '],
-        '3' : [area_pais_sorteado, '6', 'Área: '],
-        '4' : [populacao_pais_sorteado, '5', 'População: '],
-        '5' : [continente_pais_sorteado, '7', 'Continente: '],
-    }
+    if(int(entrada_dicas)==1):
+        dados = [cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira), '4', 'Cor da Bandeira: ']
+    if(int(entrada_dicas)==2):
+        dados = [sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital,dicas_permitidas,quantidade_tentativas), '3', 'Letra da capital: ']
+    if(int(entrada_dicas)==3):
+        dados = [area_pais_sorteado, '6', 'Área: ']
+    if(int(entrada_dicas)==4):
+        dados = [populacao_pais_sorteado, '5', 'População: ']
+    if(int(entrada_dicas)==5):
+        dados = [continente_pais_sorteado, '7', 'Continente: ']
 
-
-    dados = dicas_dic[entrada_dicas]
     dica = dados[0]
     tentativas_gastas = dados[1]
     identificador = dados[2]

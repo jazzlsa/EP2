@@ -8,10 +8,6 @@ continuar ='s' #inicia continuar
 lista_paises = []
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
-lista_restrita_capital = [] # Inicializa lista que impede letras de se repetirem ao pedir a dica '2'
-lista_restrita_bandeira = [] # Inicializa lista que impede as cores de se repetirem ao pedir a dica '1'
-dicas_ja_foram = {}
-dic_dicas = {}
 
 
 # Colocando os países na lista
@@ -19,7 +15,15 @@ for pais in dados_normalizados.keys():
   lista_paises.append(pais)
 
 #laço para garantir que ele continue jogando até dizer que não
-while continuar == 's': 
+while continuar == 's':
+  # dicionário de dicas
+  dic_dicas = {}
+  # Inicializa as dicas que já foram compradas
+  dicas_ja_foram = {} 
+  # Inicializa lista que impede letras de se repetirem ao pedir a dica '2'
+  lista_restrita_capital = []
+  # Inicializa lista que impede as cores de se repetirem ao pedir a dica '1'
+  lista_restrita_bandeira = []
   #inicia dicas compradas
   dicas_compradas = []
   #inicializando as distancias das tentativas
@@ -29,9 +33,9 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 2
+  quantidade_tentativas = 20
   #inicia dicas permitidas
-  dicas_permitidas = {'0':True,'1':'','2':'','3':'','4':'','5':''}
+  dicas_permitidas = {'0':True,'1':True,'2':True,'3':True,'4':True,'5':True}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
@@ -41,7 +45,7 @@ while continuar == 's':
   display.display_boas_vindas()
   #mostra o menu
   display.display_menu()
-
+  display.display_tentativas_restantes(quantidade_tentativas)
   distancias2 = []
   display.display_tentativas_restantes(quantidade_tentativas)
   print()
@@ -130,21 +134,22 @@ while continuar == 's':
           if entrada_dicas == '1':
             lista_restrita_bandeira.append(dica)
             if(len(lista_restrita_bandeira)==len(pais_sorteado['bandeira'])):
-              funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'1')
+              dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'1')
           if entrada_dicas == '2':
             lista_restrita_capital.append(dica)
           if(entrada_dicas == '3'):
-            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'3')
+            dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'3')
           if(entrada_dicas == '4'):
-            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'4')
+            dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'4')
           if(entrada_dicas == '5'):
-            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'5')
+            dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'5')
 
           dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
           tela = display.display_dicas_ja_foram(dic_dicas)
 
           if dica != '': # Condição que impede de descontar as tentativas caso ja tenha conseguido todas as letras da capital ou todas as cores da bandeira
             quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
+            dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
           
           display.display_tentativas_restantes(quantidade_tentativas)
         
