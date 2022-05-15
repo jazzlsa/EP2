@@ -39,7 +39,6 @@ while continuar == 's':
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
-  print(pais_sorteado['nome'])
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
@@ -51,7 +50,7 @@ while continuar == 's':
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
     #pega o que ele for digitar
-    entrada = input('Qual é o país sorteado? ')
+    entrada = input('\033[1;35mQual é o país sorteado?\033[m ')
     entrada = entrada.lower()
     #pula linha
     print()
@@ -100,14 +99,14 @@ while continuar == 's':
       
         print('\033[;1m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
         if(len(distancias)==0):
-          print('Nenhum país testado')
+          print('\033[1;35mNenhum país testado\033[m')
         else:
           display.display_distancias(distancias)
         print()
 
         print('\033[;1m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
         if(len(dic_dicas)==0):
-          print('Nenhuma dica comprada')
+          print('\033[1;35mNenhuma dica comprada\033[m')
         else:
           dica = display.display_dicas_ja_foram(dic_dicas)
         print()
@@ -120,7 +119,7 @@ while continuar == 's':
 
         while(entrada_dicas not in dicas_permitidas or dicas_permitidas[entrada_dicas]==False):
           display.erro_digito_opcao_dicas()
-          entrada_dicas = input('Tenta de novo, qual é a opção que você deseja? ')
+          entrada_dicas = input('\033[1;35mTenta de novo, qual é a opção que você deseja?\033[m ')
         
         if(entrada_dicas!='0'):
           nova_dica = ''
@@ -157,7 +156,7 @@ while continuar == 's':
         
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if entrada not in ['menu','dica','desisto','inventario'] and entrada != pais_sorteado['nome']:
-        print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')
+        print('\033[1;35mEita! O valor digitado não é um país. Lembre-se de não digitar acentos.\033[m')
       #verifica se o pais digitado é o correto
       if(entrada==pais_sorteado['nome']):
         ganhou = True

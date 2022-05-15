@@ -164,15 +164,15 @@ def adiciona_tentativa(entrada,distancia_tentativa,distancias):
 
 def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,dica_bloqueada):
     quantidade_tentativas = int(quantidade_tentativas)
-    if(quantidade_tentativas<4 and dicas_permitidas['1']==True):
+    if(quantidade_tentativas<=4 and dicas_permitidas['1']==True):
         dicas_permitidas['1']=False
-    if(quantidade_tentativas<3 and dicas_permitidas['2']==True):
+    if(quantidade_tentativas<=3 and dicas_permitidas['2']==True):
         dicas_permitidas['2']=False
-    if(quantidade_tentativas<6 and dicas_permitidas['3']==True):
+    if(quantidade_tentativas<=6 and dicas_permitidas['3']==True):
         dicas_permitidas['3']=False
-    if(quantidade_tentativas<5 and dicas_permitidas['4']==True):
+    if(quantidade_tentativas<=5 and dicas_permitidas['4']==True):
         dicas_permitidas['4']=False
-    if(quantidade_tentativas<7 and dicas_permitidas['5']==True):
+    if(quantidade_tentativas<=7 and dicas_permitidas['5']==True):
         dicas_permitidas['5']=False
     if(dica_bloqueada!=''):
         dicas_permitidas[str(dica_bloqueada)]=False

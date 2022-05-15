@@ -23,7 +23,16 @@ def display_menu():
     
 def display_mercado_dicas(dicas_permitidas):
     string_opcoes=''
-    outras_opcoes = False
+    tem_dicas = False
+    for indice in dicas_permitidas.keys():
+        if(dicas_permitidas[indice]==True and indice!='0'):
+            tem_dicas=True
+            break
+    if(tem_dicas==False):
+        print('\033[1;35mParceiro, infelizmente você não tem tentativas para comprar dicas, fechou?\033[m')
+        print()
+        return '0'
+    
     print('')
     print('\033[1;35m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     print('')
@@ -65,17 +74,17 @@ def display_tentativas_restantes(tentativas):
 
 def display_confirma_desisto():
     print('')
-    print('Não acredito que você seja um arregão. Quer mesmo desistir?')
-    print('[s/n]')
+    print('\033[1;35mNão acredito que você seja um arregão. Quer mesmo desistir?\033[m')
+    print('\033[1;35m[s/n]\033[m')
 
 def display_nao_desisto():
     print('')
-    print('Sabia que você não era um arregão!')
+    print('\033[1;35mSabia que você não era um arregão!\033[m')
     print('')
 
 def display_sim_desisto():
     print('')
-    print('Sabia que você era um arregão!')
+    print('\033[1;35mSabia que você era um arregão!\033[m')
     print('')
 
 def display_distancias(array_distancias):
