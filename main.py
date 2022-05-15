@@ -39,7 +39,7 @@ while continuar == 's':
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
-  print(pais_sorteado['nome'])
+  #print(pais_sorteado['nome']) #print do nome do pais sorteado para testes
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
@@ -47,7 +47,6 @@ while continuar == 's':
   display.display_menu()
   display.display_tentativas_restantes(quantidade_tentativas)
   distancias2 = []
-  display.display_tentativas_restantes(quantidade_tentativas)
   print()
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
