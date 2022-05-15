@@ -96,7 +96,7 @@ def display_distancias(array_distancias):
     for distancias in array_distancias:
         string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
         
-        if array_distancias[distancias] > 15000:
+        if array_distancias[distancias] > 15000: 
             print('\033[1;96m'+string+'\033[m')
         elif array_distancias[distancias] <= 15000 and array_distancias[distancias] > 10000:
             print('\033[1;94m'+string+'\033[m')
