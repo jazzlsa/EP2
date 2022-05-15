@@ -29,12 +29,13 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 50
+  quantidade_tentativas = 2
   #inicia dicas permitidas
   dicas_permitidas = {'0':True,'1':'','2':'','3':'','4':'','5':''}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
+  print(pais_sorteado['nome'])
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
@@ -42,6 +43,8 @@ while continuar == 's':
   display.display_menu()
 
   distancias2 = []
+  display.display_tentativas_restantes(quantidade_tentativas)
+  print()
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
@@ -89,14 +92,14 @@ while continuar == 's':
       # mostra inventário
       if(entrada=='inventario'):
       
-        print('\033[1;35m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
+        print('\033[;1m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
         if(len(distancias)==0):
           print('Nenhum país testado')
         else:
           display.display_distancias(distancias)
         print()
 
-        print('\033[1;35m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
+        print('\033[;1m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
         if(len(dic_dicas)==0):
           print('Nenhuma dica comprada')
         else:
@@ -153,10 +156,12 @@ while continuar == 's':
         ganhou = True
   #mostra mensagem caso tenha perdido
   if(ganhou == False):
-    print('Ihhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?')
+    print('\033[1;31mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
+    print()
   #mostra mensagem caso tenha ganhado
   if(ganhou == True):
     display.ganhou1()
+    print()
   #mostra mensagem se quer mais uma rodada
   display.jogar_novamente()
   entrada=''
