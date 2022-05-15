@@ -53,7 +53,7 @@ while continuar == 's':
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
     #pega o que ele for digitar
     entrada = input('Qual é o país sorteado? ')
-    entrada = entrada.lower()
+    entrada = entrada.lower() #garantindo que o pais vai ser aceito de jeito que o jogador digitar
     #pula linha
     print()
 
