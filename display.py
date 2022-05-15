@@ -45,7 +45,8 @@ def display_mercado_dicas(dicas_permitidas):
     print('\033[1;35m0. Voltar                                     \033[m')
     print('')
     print('\033[1;35m✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿\033[m')
-    entrada_dicas = input('Escolha sua opção [0'+string_opcoes+']: ')
+    entrada_dicas = input('\033[1;35mEscolha sua opção [0'+string_opcoes+']: \033[m')
+    print()
     return entrada_dicas
 
 def display_tentativas_restantes(tentativas):

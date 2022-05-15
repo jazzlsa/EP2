@@ -33,7 +33,7 @@ while continuar == 's':
   #inicia desistiu
   desistiu = False
   #inicia quantidade de tentativas
-  quantidade_tentativas = 20
+  quantidade_tentativas = 50
   #inicia dicas permitidas
   dicas_permitidas = {'0':True,'1':True,'2':True,'3':True,'4':True,'5':True}
   dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
@@ -99,11 +99,13 @@ while continuar == 's':
         else:
           display.display_distancias(distancias)
         print()
+
         print('\033[1;35m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
         if(len(dic_dicas)==0):
           print('Nenhuma dica comprada')
         else:
           dica = display.display_dicas_ja_foram(dic_dicas)
+        print()
 
       # mostra e avalia as dicas existentes -  caso o jogador escolha "dica"
       if(entrada=='dica'):
@@ -113,7 +115,7 @@ while continuar == 's':
 
         while(entrada_dicas not in dicas_permitidas or dicas_permitidas[entrada_dicas]==False):
           display.erro_digito_opcao_dicas()
-          entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
+          entrada_dicas = input('Tenta de novo, qual é a opção que você deseja? ')
         
         if(entrada_dicas!='0'):
           nova_dica = ''
