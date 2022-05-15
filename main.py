@@ -8,7 +8,8 @@ continuar ='s' #inicia continuar
 lista_paises = []
 pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
-
+#mostra as boas vindas do jogo
+display.display_boas_vindas()
 
 # Colocando os países na lista
 for pais in dados_normalizados.keys():
@@ -40,19 +41,18 @@ while continuar == 's':
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
-  #mostra as boas vindas do jogo
-  display.display_boas_vindas()
+  
   #mostra o menu
   display.display_menu()
+  display.advinha_pais()
   display.display_tentativas_restantes(quantidade_tentativas)
   print()
-  distancias2 = []
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
     #pega o que ele for digitar
     entrada = input('\033[1;35mQual é o país sorteado?\033[m ')
-    entrada = entrada.lower() #garantindo que o pais vai ser aceito de jeito que o jogador digitar
+    entrada = entrada.lower() #garantindo que o pais vai ser aceito do jeito que o jogador digitar
     #pula linha
     print()
 

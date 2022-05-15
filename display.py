@@ -123,3 +123,6 @@ def erro_digito_opcao_dicas():
 def display_dicas_ja_foram(dic_dicas):
     for ea in dic_dicas.values():
         print('\033[1;35m'+str(ea)+'\033[m')
+
+def advinha_pais():
+    print('\033[1;35mUm país foi sorteado, tente advinhar qual é!\033[m')
