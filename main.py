@@ -31,14 +31,17 @@ while continuar == 's':
   #inicia quantidade de tentativas
   quantidade_tentativas = 20
   #inicia dicas permitidas
-  dicas_permitidas = {}
-  dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
+  dicas_permitidas = {'0':True,'1':'','2':'','3':'','4':'','5':''}
+  dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
   #define qual o país para se ganhar
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
+  pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
   #mostra as boas vindas do jogo
   display.display_boas_vindas()
   #mostra o menu
   display.display_menu()
+
+  distancias2 = []
 
   #continua não tiver desistido ou ganhado ou tiver tentativas
   while quantidade_tentativas != 0 and ganhou == False and desistiu == False:
@@ -51,7 +54,7 @@ while continuar == 's':
       #queima uma tentativa
       quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,1,distancias,entrada)
       #atualiza as dicas permitidas
-      dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas)
+      dicas_permitidas = funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'')
       #verifica a distância do país informado com o país sorteado
       distancia_tentativa = funcoes.haversine(pais_sorteado['latitude'], pais_sorteado['longitude'], dados_normalizados[entrada]['geo']['latitude'], dados_normalizados[entrada]['geo']['longitude'])
       #Adiciona distâncias na lista de tentativas
@@ -87,11 +90,16 @@ while continuar == 's':
       if(entrada=='inventario'):
       
         print('\033[1;35m✿ ❀ PAISES JÁ TESTADOS ✿ ❀ ✿\033[m')
-        display.display_distancias(distancias)
+        if(len(distancias)==0):
+          print('Nenhum país testado')
+        else:
+          display.display_distancias(distancias)
         print()
         print('\033[1;35m✿ ❀ DICAS JÁ COMPRADAS ✿ ❀ ✿\033[m')
-        dica = display.display_dicas_ja_foram(dic_dicas)
-
+        if(len(dic_dicas)==0):
+          print('Nenhuma dica comprada')
+        else:
+          dica = display.display_dicas_ja_foram(dic_dicas)
 
       # mostra e avalia as dicas existentes -  caso o jogador escolha "dica"
       if(entrada=='dica'):
@@ -99,39 +107,42 @@ while continuar == 's':
         entrada_dicas = display.display_mercado_dicas(dicas_permitidas)
         digito_correto = False
 
-        while(digito_correto==False):
+        while(entrada_dicas not in dicas_permitidas or dicas_permitidas[entrada_dicas]==False):
+          display.erro_digito_opcao_dicas()
+          entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
+        
+        if(entrada_dicas!='0'):
+          nova_dica = ''
 
-          if(isinstance(entrada_dicas, int)==False or entrada_dicas < -1 or entrada_dicas > 6):
-            if(dicas_permitidas[str(entrada_dicas)]==False):
-              display.erro_digito_opcao_dicas()
-              entrada_dicas = input('Tenta de novo, qual é a opção que você deseja?')
+          retorno_funcao = funcoes.dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital,dicas_permitidas,quantidade_tentativas)
 
-            else:
-              digito_correto=True
-              nova_dica = ''
+          dica = retorno_funcao[0]
+          custo_tentativa = int(retorno_funcao[1])
+          identificador = retorno_funcao[2]
 
-              retorno_funcao = funcoes.dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital)
+          nova_dica = '- {}{}'.format(identificador, dica)
 
-              dica = retorno_funcao[0]
-              custo_tentativa = int(retorno_funcao[1])
-              identificador = retorno_funcao[2]
+          if entrada_dicas == '1':
+            lista_restrita_bandeira.append(dica)
+            if(len(lista_restrita_bandeira)==len(pais_sorteado['bandeira'])):
+              funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'1')
+          if entrada_dicas == '2':
+            lista_restrita_capital.append(dica)
+          if(entrada_dicas == '3'):
+            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'3')
+          if(entrada_dicas == '4'):
+            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'4')
+          if(entrada_dicas == '5'):
+            funcoes.atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'5')
 
-              nova_dica = '- {}{}'.format(identificador, dica)
+          dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
+          tela = display.display_dicas_ja_foram(dic_dicas)
 
-              if entrada_dicas == '1':
-                lista_restrita_bandeira.append(dica)
-              if entrada_dicas == '2':
-                lista_restrita_capital.append(dica)
-
-              dic_dicas = funcoes.adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica)
-              tela = display.display_dicas_ja_foram(dic_dicas)
-
-              if dica != '': # Condição que impede de descontar as tentativas caso ja tenha conseguido todas as letras da capital ou todas as cores da bandeira
-                quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
-              
-              display.display_tentativas_restantes(quantidade_tentativas)
-             
-
+          if dica != '': # Condição que impede de descontar as tentativas caso ja tenha conseguido todas as letras da capital ou todas as cores da bandeira
+            quantidade_tentativas=funcoes.debita_tentativa(quantidade_tentativas,custo_tentativa,distancias,entrada)
+          
+          display.display_tentativas_restantes(quantidade_tentativas)
+        
       #verifica se não é uma das opções. Se não for mostra msg de informação errada
       if entrada not in ['menu','dica','desisto','s','n','inventario'] and entrada != pais_sorteado['nome']:
         print('Eita! O valor digitado não é um país. Lembre-se de não digitar acentos.')

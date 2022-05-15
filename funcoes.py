@@ -1,7 +1,9 @@
 #funções do jogo
+from audioop import reverse
 import math
 import random
 import dados 
+import operator
 
 # Normalizando Base de Países - transforma banco de dados em dicionario cujas chave são paises
 def normaliza(DADOS):
@@ -35,7 +37,8 @@ def haversine(fi1, l1, fi2, l2):
     angulo = math.sqrt(a+c*b)
     distancia = 2 * dados.EARTH_RADIUS * math.asin(angulo)
     
-    return (f'{int(distancia):,}').replace(',','.')
+    #return (f'{int(distancia):,}').replace(',','.')
+    return distancia
 
 
 # Sorteando Países - Escolhe país que deve ser adivinhado 
@@ -58,6 +61,13 @@ def esta_na_lista(pais, listas):
 
 # Adicionando em uma Lista Ordenada - retorna uma lista crescente com as distancias dos paises ja selecionados pelo jogador 
 def adiciona_em_ordem(nome, distancia, lista):
+    
+    #lista_1=[nome, distancia]
+    #if
+    #lista.append(lista_1)
+    
+    
+    
     lista_1=[nome, distancia]
     lista_ordenada=[]
     contador=0
@@ -91,7 +101,7 @@ def adiciona_em_ordem(nome, distancia, lista):
 
 # Sorteia Letra com Restrições - sorteia uma letra da capital
 #  Colocar letras ja sorteadas na lista de restrições
-def sorteia_letra_capital(palavra, lista_restrita):
+def sorteia_letra_capital(palavra, lista_restrita,dicas_permitidas,quantidade_tentativas):
     especiais = ['.', ',', '-', ';', ' ', '@', '!', '$', '%', '*', '(', ')', '{', '}', '[', ']', ':']
     saida = ''
     palavra = palavra.lower()
@@ -103,6 +113,9 @@ def sorteia_letra_capital(palavra, lista_restrita):
         if letra not in especiais and letra not in lista_restrita and letra not in palavra_lista:
             palavra_lista.append(letra)
             continua = True
+    
+    if(continua==False):
+        atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,'2')
 
     while continua:
         saida = random.choice(palavra_lista)
@@ -123,7 +136,7 @@ def cor_bandeira(bandeira, lista_restrita):
     saida = random.choice(cores_possiveis)
     
     if saida == 'outras' or saida in lista_restrita:
-        while saida == 'outras'or saida in lista_restrita:
+        while saida == 'outras' or saida in lista_restrita:
             saida = random.choice(cores_possiveis)
 
     return saida
@@ -154,29 +167,31 @@ def debita_tentativa(total, debito, tentativas, entrada):
     return total
 
 def adiciona_tentativa(entrada,distancia_tentativa,distancias):
-    distancias[entrada] = entrada + ' : ' + distancia_tentativa + ' km'
+    #distancias[entrada] = {}
+    #distancias[entrada]['string'] = entrada + ' : ' + distancia_tentativa + ' km'
+    #distancias[entrada]['distancia'] = int(distancia_tentativa.replace('.',''))
+    #distancias = sorted(distancias.items(), key=lambda item: item[2])
+    distancias[entrada]=int(distancia_tentativa)
+    distancias = dict(sorted(distancias.items(), key=operator.itemgetter(1),reverse=True))
     return distancias
 
-def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas):
-    dicas_permitidas['1']=False
-    dicas_permitidas['2']=False
-    dicas_permitidas['3']=False
-    dicas_permitidas['4']=False
-    dicas_permitidas['5']=False
-    if(quantidade_tentativas>4):
+def atualiza_dicas_permitidas(dicas_permitidas,quantidade_tentativas,dica_bloqueada):
+    if(dica_bloqueada!=''):
+        dicas_permitidas[str(dica_bloqueada)]=False
+    if(quantidade_tentativas>4 and dicas_permitidas['1']==''):
         dicas_permitidas['1']=True
-    if(quantidade_tentativas>3):
+    if(quantidade_tentativas>3 and dicas_permitidas['2']==''):
         dicas_permitidas['2']=True
-    if(quantidade_tentativas>6):
+    if(quantidade_tentativas>6 and dicas_permitidas['3']==''):
         dicas_permitidas['3']=True
-    if(quantidade_tentativas>5):
+    if(quantidade_tentativas>5 and dicas_permitidas['4']==''):
         dicas_permitidas['4']=True
-    if(quantidade_tentativas>7):
+    if(quantidade_tentativas>7 and dicas_permitidas['5']==''):
         dicas_permitidas['5']=True
     return dicas_permitidas
 
 
-def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital):
+def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_capital,dicas_permitidas,quantidade_tentativas):
 
     area_pais_sorteado = pais_sorteado['area']
     populacao_pais_sorteado = pais_sorteado['populacao']
@@ -186,11 +201,12 @@ def dicas(entrada_dicas, pais_sorteado, lista_restrita_bandeira, lista_restrita_
 
     dicas_dic = {
         '1' : [cor_bandeira(bandeira_pais_sorteado, lista_restrita_bandeira), '4', 'Cor da Bandeira: '],
-        '2' : [sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital), '3', 'Letra da capital: '],
+        '2' : [sorteia_letra_capital(capital_pais_sorteado, lista_restrita_capital,dicas_permitidas,quantidade_tentativas), '3', 'Letra da capital: '],
         '3' : [area_pais_sorteado, '6', 'Área: '],
         '4' : [populacao_pais_sorteado, '5', 'População: '],
         '5' : [continente_pais_sorteado, '7', 'Continente: '],
     }
+
 
     dados = dicas_dic[entrada_dicas]
     dica = dados[0]
@@ -210,3 +226,14 @@ def adiciona_dicas_usadas(nova_dica, dicas_ja_foram, entrada_dicas, dica):
         dicas_ja_foram[entrada_dicas] += ', {}'.format(dica)
 
     return dicas_ja_foram
+
+def normaliza_cores_bandeira(cores_bandeira):
+    cores_auxiliar={}
+    for cor in cores_bandeira.keys():
+        if(cores_bandeira[cor]==0):
+            cores_auxiliar[cor]=True
+    for cor in cores_auxiliar.keys():
+        del cores_bandeira[cor]
+    if 'outras' in cores_bandeira:
+        del cores_bandeira['outras']
+    return cores_bandeira

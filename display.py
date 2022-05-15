@@ -28,10 +28,10 @@ def display_mercado_dicas(dicas_permitidas):
     print('\033[1;35m✿ ❀ ✿ ❀ ✿  Mercado de Dicas ❀ ✿ ❀ ✿ ❀ ✿ ❀\033[m')
     print('')
     if(dicas_permitidas['1']):
-        print('\033[1;35m1. Cor da bandeira  - custa 4 tentativas (se retornar vazio, as cores acabaram e não tera tentativas descontadas)\033[m')
+        print('\033[1;35m1. Cor da bandeira  - custa 4 tentativas\033[m')
         string_opcoes=string_opcoes+'|1'
     if(dicas_permitidas['2']):
-        print('\033[1;35m2. Letra da capital - custa 3 tentativas (se retornar vazio, a palavra acabou e não tera tentativas descontadas)\033[m')
+        print('\033[1;35m2. Letra da capital - custa 3 tentativas\033[m')
         string_opcoes=string_opcoes+'|2'
     if(dicas_permitidas['3']):
         print('\033[1;35m3. Área             - custa 6 tentativas\033[m')
@@ -75,8 +75,17 @@ def display_sim_desisto():
     print('')
 
 def display_distancias(array_distancias):
-    for linhas in array_distancias:
-        print(array_distancias[linhas])
+    string = ''
+    for distancias in array_distancias:
+        string = distancias+' : '+(f'{int(array_distancias[distancias]):,}').replace(',','.')+' km'
+        
+        if array_distancias[distancias] > 10000:
+            print('\033[1;31m'+string+'\033[m')
+        else: 
+            if array_distancias[distancias] <= 10000 and array_distancias[distancias] > 1000:
+                print('\033[1;33m'+string+'\033[m')
+            else:
+                print('\033[1;32m'+string+'\033[m')
 
 def ganhou1():
     print('Ahhhhh moleque! Parabéns! A vida tá fácil, hein?!')
