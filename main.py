@@ -163,7 +163,7 @@ while continuar == 's':
         ganhou = True
   #mostra mensagem caso tenha perdido
   if(ganhou == False):
-    print('\033[1;35mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
+    print('\033[1;91mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
     print()
   #mostra mensagem caso tenha ganhado
   if(ganhou == True):
