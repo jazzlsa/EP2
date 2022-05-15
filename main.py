@@ -10,6 +10,8 @@ pais_sorteado = NULL #inicia o pais sorteado
 dados_normalizados = funcoes.normaliza(DADOS) # Dicionario com os países (como chave) e seus respectivos dados
 #mostra as boas vindas do jogo
 display.display_boas_vindas()
+#mostra o menu
+display.display_menu()
 
 # Colocando os países na lista
 for pais in dados_normalizados.keys():
@@ -42,8 +44,7 @@ while continuar == 's':
   pais_sorteado = funcoes.cria_dicionario_pais_sorteado(funcoes.sorteia_pais(dados_normalizados),dados_normalizados)
   pais_sorteado['bandeira'] = funcoes.normaliza_cores_bandeira(pais_sorteado['bandeira'])
   
-  #mostra o menu
-  display.display_menu()
+  #diz que um país foi sorteado e numero de tentativas restantes
   display.advinha_pais()
   display.display_tentativas_restantes(quantidade_tentativas)
   print()
@@ -163,7 +164,7 @@ while continuar == 's':
         ganhou = True
   #mostra mensagem caso tenha perdido
   if(ganhou == False):
-    print('\033[1;91mIhhh! Não foi dessa vez, meu chapa! O país era '+pais_sorteado['nome']+', fechou?\033[m')
+    print('Ihhh! Não foi dessa vez, meu chapa! O país era \033[1;35m'+pais_sorteado['nome']+'\033[m, fechou?')
     print()
   #mostra mensagem caso tenha ganhado
   if(ganhou == True):
